@@ -1,16 +1,19 @@
 import React from 'react'
-import {Text, View} from 'react-native'
+import {Text, View,StyleSheet} from 'react-native'
+
+const styles= StyleSheet.create({
+    container:{
+        marginBottom: 20,
+        borderRadius: 30,
+        backgroundColor: '#d0cbcb',
+        padding:20
+    }
+})
 
 const TodoListItem = ({title, body}) => {
     return (
         <View
-            style={
-                {
-                    marginBottom: 20,
-                    borderRadius: 30,
-                    backgroundColor: '#d0cbcb',
-                    padding:20
-                }}
+            style={styles.container}
         >
             <Text
                 style={{fontSize:24}}
