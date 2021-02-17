@@ -30,6 +30,7 @@ const App = () => {
       style={{ width, height }}
     >
       <Text style={{textAlign:'center'}}>Hello BJladika! v2</Text>
+      
       <TouchableOpacity
         style={{
           marginTop:10,
@@ -43,9 +44,11 @@ const App = () => {
           setColor(colorArray[color_int])
           setCountNumb(color_int+1)
           if (color_int >= 6) setCountNumb(0)
-        }}
-
-        ><Text style={{marginTop:10}}>Нажми на меня</Text></TouchableOpacity>
+        }}>
+          
+          <Text style={{marginTop:10}}>Нажми на меня</Text>
+          
+      </TouchableOpacity>
       <View
         style={{
           marginTop:30,
