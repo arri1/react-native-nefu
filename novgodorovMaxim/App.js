@@ -1,68 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import 'react-native-gesture-handler';
 import {
   View,
   Text,
   Button,
   TouchableOpacity,
+  SafeAreaView,
   Dimensions
 } from 'react-native';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import UseStateLab from './screens/useStateLab'
+import UseMemoLab from './screens/useMemoLab'
+import TodoList from './screens/todoList'
+
 const { width, height } = Dimensions.get('screen')
-const colorArray=[
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'lightblue',
-  'blue',
-  'purple'
-]
+
+
+const Tab = createBottomTabNavigator();
+
+
 const App = () => {
-  const [color, setColor] = useState('white')
-  const [count,setCount] = useState(0)
-  const [color_int,setCountNumb] = useState(0)
-
-  useEffect(()=>{
-    setCount(count+1)
-  },[color])
-
   return (
-    <View
+    <SafeAreaView
       style={{ width, height }}
     >
-      <Text style={{textAlign:'center'}}>Hello BJladika! v2</Text>
-      
-      <TouchableOpacity
-        style={{
-          marginTop:10,
-          height: 40,
-          alignItems:'center',
-          Text:"dsd",
-          backgroundColor: 'lightblue'
-        }}
-        title={'Press X to Win'}
-        onPress={() => {
-          setColor(colorArray[color_int])
-          setCountNumb(color_int+1)
-          if (color_int >= 6) setCountNumb(0)
-        }}>
-          
-          <Text style={{marginTop:10}}>Нажми на меня</Text>
-          
-      </TouchableOpacity>
-      <View
-        style={{
-          marginTop:30,
-          alignSelf:'center',
-          backgroundColor: color,
-          width: 50,
-          height: 50
-        }}
-      />
-      
-      <Text style={{marginTop:30,textAlign:'center'}}>Число Владыки: {count}</Text>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen 
+            name="useStateLab" 
+            component={UseStateLab}
+            options={{
+              tabBarLabel: 'UseStateLab',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="bell" color={color} size={36} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="todoList" 
+            component={TodoList}
+            options={{
+              tabBarLabel: 'TodoList',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="account" color={color} size={size} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
 
-    </View>
+    </SafeAreaView>
   );
-};
+}
 
 export default App;
