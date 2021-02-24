@@ -1,74 +1,59 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
+  Button,
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
+const { width, height } = Dimensions.get('screen');
+var windowwidth = Dimensions.get('window').width; //full width
+var magnifier = 10;
+var magnified = function(magnifier){
+  return {
+    width: windowwidth,
+    alignSelf:'center',
+    backgroundColor: 'blue',
+    height: magnifier,
+  }
+}
+const App = () => {
+  const [magnifier,setCount] = useState(10);
+  const [color_int,setCountNumb] = useState(0);
   return (
-    <View>
-      <Text>Hello World!</Text>
+    <View
+      style={{ width, height }}
+    >
+      <Text
+        style={{
+          textAlign:'center',
+          marginTop: 50,
+          fontSize: 50,
+          }}>Ручной водопад</Text>
+
+      <TouchableOpacity
+        style={{
+          padding: 20,
+          alignItems:'center',
+          Text:"dsd",
+          backgroundColor: 'red'
+        }}
+        title={'Нажималка'}
+        onPress={() => {
+          setCount(magnifier + 10);
+        }}>
+
+          <Text
+            style={{
+              fontSize: 20,
+            }}>Включаем гравитацию</Text>
+
+      </TouchableOpacity>
+      <View
+        style={magnified(magnifier)}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
