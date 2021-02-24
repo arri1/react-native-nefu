@@ -2,9 +2,8 @@ import { ApolloClient, createHttpLink, InMemoryCache, ApolloLink } from '@apollo
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import {AsyncStorage} from 'react-native'
-export const host = 'http://localhost:4006'
 
-const url = host
+const url = 'https://nefu-server.herokuapp.com/'
 
 const authLink = setContext(async (_, { headers }) => {
     const token = await AsyncStorage.getItem('token')
