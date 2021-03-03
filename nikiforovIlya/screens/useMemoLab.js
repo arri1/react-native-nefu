@@ -8,7 +8,6 @@ const sum = n => {
 const useMemoLab = () => {
     const [num, setNum] = useState(1);
     const [isGreen, setIsGreen] = useState(true);
-    //const result = useMemo(() => sum(num), [num]);
     const result = sum(num);
     return (
         <View
