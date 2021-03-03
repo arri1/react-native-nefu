@@ -1,14 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from 'react';
 import {
-    AppRegistry,
+    Dimensions,
     StyleSheet,
     Text,
     View,
-    TouchableHighlight,
+    TouchableOpacity,
+    Button
 } from "react-native";
 
-let randomHex = () => {
-    let letters = "0123456789ABCDEF";
+const { height, width } = Dimensions.get('window')
+
+const randomHex = () => {
+    const letters = "0123456789ABCDEF";
     let color = "#";
     for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
@@ -16,42 +19,28 @@ let randomHex = () => {
     return color;
 };
 
-export default class randomBackground extends Component {
-    constructor(props) {
-        super(props);
-
-        this.onClick = this.onClick.bind(this);
-
-        this.state = {
-            backgroundColor: randomHex(),
-        };
-    }
-
-    onClick() {
-        console.log("clicked ");
-        this.setState({ backgroundColor: randomHex() });
-    }
-
-    render() {
-        return (
-            <TouchableHighlight
-                onPress={this.onClick}
+const App = (props) => {
+    const [backgroundColor, setColor] = useState(randomHex())
+    const onClick = () => setColor(randomHex())
+    return (
+        <View style={styles.mainContainer}>
+            <TouchableOpacity
+                onPress={onClick}
                 style={[
                     styles.container,
-                    { backgroundColor: this.state.backgroundColor },
+                    { backgroundColor: randomHex() }
                 ]}
             >
-                <View>
-                    <Text style={styles.instructions}>Tap to change the background color</Text>
-                </View>
-            </TouchableHighlight>
-        );
-    }
+                <Text style={styles.instructions}>Tap to change the background color</Text>
+            </TouchableOpacity>
+        </View >
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height,
+        width,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: randomHex(),
@@ -59,6 +48,10 @@ const styles = StyleSheet.create({
     instructions: {
         color: "white",
     },
+    mainContainer: {
+        height,
+        width
+    }
 });
 
-AppRegistry.registerComponent("randomBackground", () => randomBackground);
+export default App
