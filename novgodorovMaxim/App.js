@@ -9,7 +9,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -37,7 +37,7 @@ const App = () => {
             options={{
               tabBarLabel: 'UseStateLab',
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="bell" color={color} size={36} />
+                <Icon name="chrome" color={'green'} size={30} />
               ),
             }}
           />
@@ -47,7 +47,7 @@ const App = () => {
             options={{
               tabBarLabel: 'TodoList',
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="account" color={color} size={size} />
+                <Icon name="playstation" color={'blue'} size={30} />
               ),
             }}
           />

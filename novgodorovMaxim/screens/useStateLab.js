@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native'
+import {SafeAreaView, Text, TouchableOpacity, View, StyleSheet} from 'react-native'
 
 const colorArray=[
     'red',
@@ -20,24 +20,34 @@ const UseStateLab = () => {
         setCount(count+1)
     },[color])
 
+    const styles = StyleSheet.create({
+        tch_opacity: {
+            marginTop:10,
+            height: 40,
+            alignItems:'center',
+            backgroundColor: 'lightblue'
+        },
+        square_view_rainbow: {
+            marginTop:30,
+            alignSelf:'center',
+            backgroundColor: color,
+            width: 50,
+            height: 50
+        },
+        text_lab_title:{
+            textAlign:'center',
+            marginTop:25
+        }
+    })
+
     return (
         <SafeAreaView>
-            <Text 
-                style={{
-                    textAlign:'center',
-                    marginTop:25
-                }}>
-                Lab2: Hello BJladika! v3
+            <Text style={styles.text_lab_title}>
+                Lab2: Hello BJladika! v4
             </Text>
       
             <TouchableOpacity
-                style={{
-                marginTop:10,
-                height: 40,
-                alignItems:'center',
-                Text:"dsd",
-                backgroundColor: 'lightblue'
-                }}
+                style={styles.tch_opacity}
                 title={'Press X to Win'}
                 onPress={() => {
                 setColor(colorArray[color_int])
@@ -48,15 +58,7 @@ const UseStateLab = () => {
                 <Text style={{marginTop:10}}>Нажми на меня</Text>
             </TouchableOpacity>
 
-            <View
-                style={{
-                marginTop:30,
-                alignSelf:'center',
-                backgroundColor: color,
-                width: 50,
-                height: 50
-                }}
-            />
+            <View name='rainbow' style={styles.square_view_rainbow}/>
       
             <Text style={{marginTop:30,textAlign:'center'}}>Число Владыки: {count}</Text>
         </SafeAreaView>

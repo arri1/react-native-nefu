@@ -1,5 +1,11 @@
 import React from 'react'
-import { Text, View, Image, Dimensions, StyleSheet } from 'react-native'
+import { 
+    Text, 
+    View, 
+    Image, 
+    Dimensions, 
+    StyleSheet } 
+from 'react-native'
 
 const { width, height } = Dimensions.get('screen')
 
@@ -14,16 +20,23 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         backgroundColor: '#d0cbcb',
         padding: 20
+    },
+    text_title:{
+        marginTop: 15,
+        width: 235,
+        fontSize: 24
+    },
+    text_author:{
+        marginTop: 0,
+        marginLeft: 10,
+        fontSize: 16
     }
 })
+
 const TodoListItem = ({ title, body, author_key }) => {
     return (
-        <View
-            style={styles.mainContainer}
-        >
-            <View
-                style={styles.paddings}
-            >
+        <View style={styles.mainContainer}>
+            <View style={styles.paddings}>
                 <View
                     style={{
                         flexDirection: 'row',
@@ -50,22 +63,11 @@ const TodoListItem = ({ title, body, author_key }) => {
                             }
                         }
                     >
-                        <Text
-                            numberOfLines={1}
-                            style={{
-                                marginTop: 15,
-                                width: 235,
-                                fontSize: 24
-                            }}>
+                        <Text numberOfLines={1} style={styles.text_title}>
                             {title}
                         </Text>
 
-                        <Text
-                            style={{
-                                marginTop: 0,
-                                marginLeft: 10,
-                                fontSize: 16
-                            }}>
+                        <Text style={styles.text_author}>
                             Posted by author_{author_key}
                         </Text>
                     </View>
