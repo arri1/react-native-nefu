@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  View,
   Text,
   TouchableOpacity,
   SafeAreaView,
@@ -26,49 +27,43 @@ const App = () => {
       <Text>
         Построй флаг России (тапай по блокам) Выполнено {count} нажатий
       </Text>
+      <View 
+        style={styles.flexbox}>
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color }]}
+          onPress={() => {
+            setColor(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>1</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.box1, { backgroundColor: color }]}
-        onPress={() => {
-          setColor(colorss[getRandomInt(7)])
-        }}>
-        <Text style={styles.text}>1</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color2 }]}
+          onPress={() => {
+            setColor2(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>2</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.box2, { backgroundColor: color2 }]}
-        onPress={() => {
-          setColor2(colorss[getRandomInt(7)])
-        }}>
-        <Text style={styles.text}>2</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[styles.box3, { backgroundColor: color3 }]}
-        onPress={() => {
-          setColor3(colorss[getRandomInt(7)])
-        }}>
-        <Text style={styles.text}>3</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color3 }]}
+          onPress={() => {
+            setColor3(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>3</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
-  box1: {
+  flexbox: {
     flexDirection: 'column',
     alignSelf: 'center',
+  },
+  boxsize: {
     width: 180,
     height: 40,
   },
-  box2: {
-    alignSelf: 'center',
-    width: 180,
-    height: 40,
-  },
-  box3: {
-    alignSelf: 'center',
-    width: 180,
-    height: 40,
-  }
 });
 export default App;
