@@ -11,7 +11,7 @@ const App = () => {
   const [color2, setColor2] = useState('grey')
   const [color3, setColor3] = useState('grey')
   const [count, setCount] = useState(0)
-  const colorss = ['red','white','blue','green','blue', 'black', 'yellow']
+  const colorss = ['red', 'white', 'blue', 'green', 'blue', 'black', 'yellow']
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -21,32 +21,6 @@ const App = () => {
     setCount(count + 1)
   }, [color, color2, color3])
 
-  const styles = StyleSheet.create({
-    box1: {
-      position: 'absolute',
-      top: 55,
-      alignSelf: 'center',
-      width: 180,
-      height: 40,
-      backgroundColor: color
-    },
-    box2: {
-      position: 'absolute',
-      top: 95,
-      alignSelf: 'center',
-      width: 180,
-      height: 40,
-      backgroundColor: color2
-    },
-    box3: {
-      position: 'absolute',
-      top: 135,
-      alignSelf: 'center',
-      width: 180,
-      height: 40,
-      backgroundColor: color3,
-    }
-  });
   return (
     <SafeAreaView>
       <Text>
@@ -54,7 +28,7 @@ const App = () => {
       </Text>
 
       <TouchableOpacity
-        style={styles.box1}
+        style={[styles.box1, { backgroundColor: color }]}
         onPress={() => {
           setColor(colorss[getRandomInt(7)])
         }}>
@@ -62,7 +36,7 @@ const App = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.box2}
+        style={[styles.box2, { backgroundColor: color2 }]}
         onPress={() => {
           setColor2(colorss[getRandomInt(7)])
         }}>
@@ -70,7 +44,7 @@ const App = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.box3}
+        style={[styles.box3, { backgroundColor: color3 }]}
         onPress={() => {
           setColor3(colorss[getRandomInt(7)])
         }}>
@@ -79,4 +53,27 @@ const App = () => {
     </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  box1: {
+    position: 'absolute',
+    top: 55,
+    alignSelf: 'center',
+    width: 180,
+    height: 40,
+  },
+  box2: {
+    position: 'absolute',
+    top: 95,
+    alignSelf: 'center',
+    width: 180,
+    height: 40,
+  },
+  box3: {
+    position: 'absolute',
+    top: 135,
+    alignSelf: 'center',
+    width: 180,
+    height: 40,
+  }
+});
 export default App;
