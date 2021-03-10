@@ -57,6 +57,9 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
+package-lock.json
+config.js
+.graphqlconfig
+/schema.graphql
 
 .vscode
