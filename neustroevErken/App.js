@@ -55,22 +55,17 @@ const App = () => {
 }
 const styles = StyleSheet.create({
   box1: {
-    position: 'absolute',
-    top: 55,
+    flexDirection: 'column',
     alignSelf: 'center',
     width: 180,
     height: 40,
   },
   box2: {
-    position: 'absolute',
-    top: 95,
     alignSelf: 'center',
     width: 180,
     height: 40,
   },
   box3: {
-    position: 'absolute',
-    top: 135,
     alignSelf: 'center',
     width: 180,
     height: 40,
