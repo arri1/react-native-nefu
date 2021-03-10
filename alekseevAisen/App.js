@@ -1,35 +1,57 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+    Dimensions,
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Button
+} from "react-native";
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const { height, width } = Dimensions.get('window')
 
-const App: () => React$Node = () => {
-  return (
-    <View>
-       <Text>Hello World!!!</Text>
-    </View>
-  );
+const randomHex = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 };
 
-export default App;
+const App = (props) => {
+    const [backgroundColor, setColor] = useState(randomHex())
+    const onClick = () => setColor(randomHex())
+    return (
+        <View style={styles.mainContainer}>
+            <TouchableOpacity
+                onPress={onClick}
+                style={[
+                    styles.container,
+                    { backgroundColor: randomHex() }
+                ]}
+            >
+                <Text style={styles.instructions}>Tap to change the background color</Text>
+            </TouchableOpacity>
+        </View >
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        height,
+        width,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: randomHex(),
+    },
+    instructions: {
+        color: "white",
+    },
+    mainContainer: {
+        height,
+        width
+    }
+});
+
+export default App

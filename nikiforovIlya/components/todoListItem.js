@@ -2,11 +2,16 @@ import React from 'react'
 import {Text, View,StyleSheet} from 'react-native'
 
 const styles= StyleSheet.create({
-    container:{
-        marginBottom: 20,
-        borderRadius: 30,
-        backgroundColor: '#d0cbcb',
-        padding:20
+    listTile: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
+        backgroundColor: "white",
+        padding: 10,
+        borderBottomWidth: 0.5,
+        borderBottomColor: "#666666"
     }
 })
 
