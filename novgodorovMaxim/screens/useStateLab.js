@@ -30,7 +30,6 @@ const UseStateLab = () => {
         square_view_rainbow: {
             marginTop:30,
             alignSelf:'center',
-            backgroundColor: color,
             width: 50,
             height: 50
         },
@@ -49,16 +48,18 @@ const UseStateLab = () => {
             <TouchableOpacity
                 style={styles.tch_opacity}
                 title={'Press X to Win'}
-                onPress={() => {
-                setColor(colorArray[color_int])
-                setCountNumb(color_int+1)
-                if (color_int >= 6) setCountNumb(0)
-                }}>
+                onPress={() => 
+                    {
+                        setColor(colorArray[color_int])
+                        setCountNumb(color_int+1)
+                        if (color_int >= 6) setCountNumb(0)
+                    }
+                }>
             
                 <Text style={{marginTop:10}}>Нажми на меня</Text>
             </TouchableOpacity>
 
-            <View name='rainbow' style={styles.square_view_rainbow}/>
+            <View name='rainbow' style={[styles.square_view_rainbow, {backgroundColor:color}]}/>
       
             <Text style={{marginTop:30,textAlign:'center'}}>Число Владыки: {count}</Text>
         </SafeAreaView>

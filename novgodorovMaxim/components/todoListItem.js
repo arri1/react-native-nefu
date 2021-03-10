@@ -3,7 +3,8 @@ import {
     Text, 
     View, 
     Image, 
-    Dimensions, 
+    Dimensions,
+    ImageBackground, 
     StyleSheet } 
 from 'react-native'
 
@@ -22,69 +23,43 @@ const styles = StyleSheet.create({
         padding: 20
     },
     text_title:{
-        marginTop: 15,
-        width: 235,
-        fontSize: 24
+        fontSize: 24,
     },
     text_author:{
         marginTop: 0,
         marginLeft: 10,
         fontSize: 16
+    },
+    image_round:{
+        width: 80,
+        height: 80,
+        //Below lines will help to set the border radius
+        borderRadius: 50,
+        overflow: 'hidden',
+    },
+    image_and_text_row:{
+        flexDirection: 'row',
+        width: '77.5%'
     }
 })
+
+const image = { uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png" };
 
 const TodoListItem = ({ title, body, author_key }) => {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.paddings}>
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        width: '100%',
-                    }}
-                >
-                    <Image
-                        source={{
-                            uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-                        }}
-                        style={{
-                            width: 80,
-                            height: 80,
-                            //Below lines will help to set the border radius
-                            borderRadius: 50,
-                            overflow: 'hidden',
-                        }}>
+                <View style={styles.image_and_text_row}>
+                    <ImageBackground source={image} style={styles.image_round}/>
 
-                    </Image>
-                    <View
-                        style={
-                            {
-                                marginLeft: 15,
-                            }
-                        }
-                    >
-                        <Text numberOfLines={1} style={styles.text_title}>
-                            {title}
-                        </Text>
-
-                        <Text style={styles.text_author}>
-                            Posted by author_{author_key}
-                        </Text>
+                    <View style={{marginLeft: 10}}>
+                        <Text numberOfLines={1} style={styles.text_title}>{title}</Text>
+                        
+                        <Text style={styles.text_author}>Posted by author_{author_key}</Text>
                     </View>
-
                 </View>
 
-
-
-
-                <Text
-                    numberOfLines={3}
-                    style={{
-                        marginTop: 8
-                    }}>
-                    {body}
-                </Text>
-
+                <Text numberOfLines={3} style={{marginTop: 8}}>{body}</Text>
             </View>
         </View>
     )
