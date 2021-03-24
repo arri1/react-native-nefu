@@ -11,6 +11,25 @@ const colorArray=[
     'purple'
   ]
 
+const styles = StyleSheet.create({
+    tch_opacity: {
+        marginTop:10,
+        height: 40,
+        alignItems:'center',
+        backgroundColor: 'lightblue'
+    },
+    square_view_rainbow: {
+        marginTop:30,
+        alignSelf:'center',
+        width: 50,
+        height: 50
+    },
+    text_lab_title:{
+        textAlign:'center',
+        marginTop:25
+    }
+})
+
 const UseStateLab = () => {
     const [color, setColor] = useState('white')
     const [count,setCount] = useState(0)
@@ -20,24 +39,7 @@ const UseStateLab = () => {
         setCount(count+1)
     },[color])
 
-    const styles = StyleSheet.create({
-        tch_opacity: {
-            marginTop:10,
-            height: 40,
-            alignItems:'center',
-            backgroundColor: 'lightblue'
-        },
-        square_view_rainbow: {
-            marginTop:30,
-            alignSelf:'center',
-            width: 50,
-            height: 50
-        },
-        text_lab_title:{
-            textAlign:'center',
-            marginTop:25
-        }
-    })
+
 
     return (
         <SafeAreaView>
