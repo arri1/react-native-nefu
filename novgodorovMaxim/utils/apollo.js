@@ -1,7 +1,7 @@
 import { ApolloClient, createHttpLink, InMemoryCache, ApolloLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
-import {AsyncStorage} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const url = 'https://nefu-server.herokuapp.com/'
 

@@ -9,12 +9,14 @@ import {
   } from 'react-native';
   
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon2 from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import UseStateLab from '../screens/useStateLab'
 import TodoList from '../screens/todoList'
+import Settings from '../screens/settings'
 
 const { width, height } = Dimensions.get('screen')
 const Tab = createBottomTabNavigator();
@@ -39,6 +41,16 @@ const LabsView = ({navigation})=>{
                     tabBarLabel: 'TodoList',
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="playstation" color={'blue'} size={30} />
+                    ),
+                    }}
+                />
+                <Tab.Screen 
+                    name="settings" 
+                    component={Settings}
+                    options={{
+                    tabBarLabel: 'Settings',
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon2 name="settings" color={'blue'} size={30} />
                     ),
                     }}
                 />
