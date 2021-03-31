@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {AsyncStorage, Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, TextInput, Text} from 'react-native'
+import {Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, TextInput, Text} from 'react-native'
 import {showMessage} from "react-native-flash-message"
 import {useApolloClient, useMutation} from "@apollo/react-hooks"
 
@@ -7,6 +7,7 @@ import {REGISTER_USER} from '../gqls/auth/mutations'
 import {USER} from "../gqls/auth/queries"
 
 import LoadingBar from "../components/loadingBar"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const styles = StyleSheet.create({
     container: {

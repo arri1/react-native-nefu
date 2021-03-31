@@ -39,8 +39,6 @@ const UseStateLab = () => {
         setCount(count+1)
     },[color])
 
-
-
     return (
         <SafeAreaView>
             <Text style={styles.text_lab_title}>
