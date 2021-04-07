@@ -5,7 +5,7 @@ const sum = n => {
     return n + n
 };
 
-const useMemoLab = () => {
+const UseMemoLab = () => {
     const [num, setNum] = useState(1);
     const [isGreen, setIsGreen] = useState(true);
     const result = sum(num);
@@ -34,4 +34,4 @@ const useMemoLab = () => {
     );
 }
 
-export default useMemoLab
+export default UseMemoLab

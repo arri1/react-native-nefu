@@ -97,20 +97,20 @@ const Registration = ({navigation}) => {
         <ScrollView
             style={styles.container}
         >
-            <Text>Логин</Text>
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
                 style={[styles.input,{marginTop: 8}]}
                 placeholder={'Введите логин'}
             />
-            <Text style={{marginTop: 24}}>Пароль</Text>
             <TextInput
                 onChangeText={text => setPassword(text)}
                 value={password}
                 secureTextEntry={true}
                 style={[styles.input, {marginTop: 8}]}
                 placeholder={'Введите пароль'}
+            
+            
             />
             <TextInput
                 onChangeText={text => setConfirmPassword(text)}
@@ -119,35 +119,32 @@ const Registration = ({navigation}) => {
                 style={[styles.input, {marginTop: 8}]}
                 placeholder={'Повторите пароль'}
             />
+          
             <View
                 style={
                     {
                         marginTop: 24,
+                        borderRadius: 66.7,
                         alignItems: 'center'
                     }
                 }
             >
                 <Button
-                    title={'Создать'}
+                    title={'Регистрация'}
                     onPress={createUser}
                 />
             </View>
-            <View
+           
+            <View 
+                
                 style={
                     {
-                        marginTop: 24,
+                        marginTop: 8,
                         alignItems: 'center'
                     }
                 }
             >
-                <Button
-                    title={'Назад'}
-                    onPress={
-                        () => {
-                            navigation.goBack()
-                        }
-                    }
-                />
+                <Text> Забыли логин или пароль? </Text>
             </View>
         </ScrollView>
     )

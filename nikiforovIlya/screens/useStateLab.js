@@ -14,7 +14,7 @@ const UseStateLab = () => {
             <Text
                 style={{textAlign: 'center', marginTop: 15}}
             >
-                Change color
+                Home
             </Text>
             <TouchableOpacity
                 style={{
@@ -27,7 +27,6 @@ const UseStateLab = () => {
                 }}
                 title={'Change color'}
                 onPress={() => {
-                    console.log(1)
                     setColor(color === 'red' ? 'blue' : 'red')
                 }}>
                 <Text>
