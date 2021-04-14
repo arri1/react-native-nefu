@@ -97,14 +97,12 @@ const Login = ({navigation}) => {
         )
     return (
         <View style={styles.container}>
-            <Text>Логин</Text>
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
                 style={[styles.input, {marginTop: 8}]}
                 placeholder={'Введите логин'}
             />
-            <Text style={{marginTop: 24}}>Пароль</Text>
             <TextInput
                 onChangeText={text => setPassword(text)}
                 value={password}
@@ -119,7 +117,7 @@ const Login = ({navigation}) => {
 
             >
                 <Button
-                    title={'Войти'}
+                    title={'Авторизация'}
                     onPress={onAuth}
                 />
             </View>
@@ -140,6 +138,17 @@ const Login = ({navigation}) => {
                         }
                     }
                 />
+            </View>
+            <View 
+                
+                style={
+                    {
+                        marginTop: 8,
+                        alignItems: 'center'
+                    }
+                }
+            >
+                <Text> Забыли логин или пароль? </Text>
             </View>
         </View>
     )

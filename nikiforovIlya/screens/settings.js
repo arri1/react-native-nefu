@@ -118,6 +118,7 @@ const Settings = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Настройки</Text>
+            <Text style={styles.namepro}>Profile name</Text>
             <TextInput
                 onChangeText={(text) => setName(text)}
                 value={name}
@@ -141,7 +142,7 @@ const Settings = ({navigation}) => {
                 onChangeText={(text) => setConfirmPassword(text)}
                 value={confirmPassword}
                 secureTextEntry={true}
-                placeholder={'Повтарите пароль'}
+                placeholder={'Повторите пароль'}
                 style={styles.input}
             />
             <View
