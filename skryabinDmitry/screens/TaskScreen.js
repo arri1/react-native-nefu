@@ -3,15 +3,15 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 
 const TaskScreen = ({ navigation }) => {
-
+  console.log("Страница тасков")
   const goToAddTask = () => {
-    navigation.navigate('AddTask')
+    navigation.navigate('AddTaskScreen')
   }
 
   return(
     <View style = { styles.container }>
     <View>
-      <Text>Тут будут таски</Text>
+      <Text>Тут будутsdsd таски</Text>
     </View>
     <View style = { styles.fixedView }>
       <TouchableOpacity 

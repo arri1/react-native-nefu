@@ -1,11 +1,15 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native'
 
-const MainScreen = () => (
-  <View style = { styles.container }>
-    <Text>Главаня страница-мраница</Text>
-  </View>
-)
+
+const MainScreen = () => {
+  console.log("mainScreen")
+  return(
+    <SafeAreaView style = { styles.container }>
+      <Text>Главаня страница-мраница</Text>
+    </SafeAreaView>
+  )
+}
 
 const styles = StyleSheet.create({
   container:{

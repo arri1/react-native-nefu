@@ -1,22 +1,20 @@
-import { createStackNavigator } from 'react-navigation-stack'
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+
 
 import TaskScreen from '../screens/TaskScreen'
 import AddTaskScreen from '../screens/AddTaskScreen'
 
 
-const AddTaskNavigator = createStackNavigator({
-    Task: {
-      screen: TaskScreen,
-      navigationOptions: {
-        title: 'Задачи'
-      }
-    },
-    AddTask: {
-        screen: AddTaskScreen,
-        navigationOptions: {
-            title: 'Добавление задачи'
-        }
-    }
-  })
+const Stack = createStackNavigator()
+
+const AddTaskNavigator = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="TaskScreen" component = { TaskScreen }/>
+            <Stack.Screen name="AddTaskScreen" component = { AddTaskScreen }/>
+        </Stack.Navigator>
+    )
+}
 
 export default AddTaskNavigator

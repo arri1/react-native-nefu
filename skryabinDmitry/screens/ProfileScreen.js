@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native'
+
 
 const ProfileScreen = () => (
-  <View style = { styles.container }>
+  <SafeAreaView style = { styles.container }>
     <Text>Это личный кабинет</Text>
-  </View>
+  </SafeAreaView>
 )
 
 const styles = StyleSheet.create({

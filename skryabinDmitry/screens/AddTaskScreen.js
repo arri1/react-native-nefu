@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+
 const AddTaskScreen = () => (
   <View style = { styles.container }>
     <Text>Добавление тасков</Text>
