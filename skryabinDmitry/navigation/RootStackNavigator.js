@@ -19,7 +19,7 @@ const RootStackNavigator = () => {
             <Stack.Screen name="Loader" component = { Loader }/>
             <Stack.Screen name="Login" component = { Login }/>
             <Stack.Screen name="Registration" component = { Registration }/>
-            <Stack.Screen name="AppNavigator" component = { AppNavigator }/>
+            <Stack.Screen name="AppNavigator" component = { AppNavigator } options= {{ headerShown: false }}/>
         </Stack.Navigator>
     )
 }
