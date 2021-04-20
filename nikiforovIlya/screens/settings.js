@@ -13,7 +13,12 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        margin: 15
+        backgroundColor: '#fff',
+        alignItems: "center",
+        height: 80,
+        paddingTop: 38,
+        justifyContent: "flex-start"
+        
     },
     input: {
         minWidth: 180,
@@ -22,7 +27,8 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignSelf: 'stretch',
         justifyContent:'center',
-        marginTop: 24
+        marginTop: 14,
+        margin: 14
     },
     button: {
         minWidth: 180,
@@ -40,8 +46,17 @@ const styles = StyleSheet.create({
     avatar:{
         flexDirection: "row",
         backgroundColor: '#D5E6FB',
-        width: "45%",
+        width: "36%",
+        marginTop: 10,
+        marginRight: 150,
+        marginVertical: 80,
         padding: 50
+    },
+    title: {
+        textAlign: 'center',
+        color: '#000000',
+        fontSize: 20,
+        fontWeight: 'bold',
     }
 })
 
@@ -139,10 +154,12 @@ const Settings = ({navigation}) => {
 
     return (
         <View style={styles.container}>
+        <Text style={styles.title}>Профиль</Text> 
             <Text 
                 style={styles.avatar}
             >
-            </Text>
+                avatar
+            </Text>           
             <TextInput
                 onChangeText={(text) => setName(text)}
                 value={name}

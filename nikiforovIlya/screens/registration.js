@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 0.5,
         borderRadius: 20,
-        alignSelf: 'stretch',
+        alignSelf: 'stretch'
     },
     button: {
         minWidth: 180,
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: '500',
+        marginTop: 30,
         color:'#000000'
     }
 })
@@ -124,7 +125,7 @@ const Registration = ({navigation}) => {
                 Регистрация
             </Text>
             <Text
-                style={{color: '#959595', textAlign: 'center'}}
+                style={{color: '#959595', textAlign: 'center', marginTop: 80}}
             >
                 Заполните все поля, чтобы создать аккаунт
             </Text>

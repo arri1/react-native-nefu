@@ -6,6 +6,7 @@ import { USER } from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 import { AUTH } from "../gqls/user/mutations"
 
+
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: '500',
+        marginTop: 20,
         color:'#000000'
     }
         
@@ -62,7 +64,7 @@ const Login = ({ navigation }) => {
         onCompleted: async ({ authUser }) => {
             await AsyncStorage.setItem('token', authUser.token)
             showMessage({
-                message: 'Регистрация прошла успешно',
+                message: 'Авторизация прошла успешно',
                 type: 'info'
             })
             apollo.writeQuery({ query: USER, data: { user: authUser.user } })
@@ -126,7 +128,7 @@ const Login = ({ navigation }) => {
                 Авторизация
             </Text>
             <Text
-                style={{color: '#959595'}}
+                style={{color: '#959595', marginTop: 80}}
             >
                 Введите свою логин и пароль, чтобы войти
             </Text>
