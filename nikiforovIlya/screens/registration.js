@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {AsyncStorage, Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
+import {AsyncStorage, TouchableOpacity, Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
 import {showMessage} from "react-native-flash-message"
 import {useApolloClient, useMutation} from "@apollo/client"
 import {REG} from "../gqls/user/mutations"
@@ -13,8 +13,27 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 0.5,
-        borderRadius: 10,
+        borderRadius: 20,
         alignSelf: 'stretch',
+    },
+    button: {
+        minWidth: 180,
+        backgroundColor: '#197BDD',
+        borderRadius: 50,
+        minHeight:50,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    buttonText: {
+        fontSize: 14,
+        fontWeight: '500',
+        color:'#FFFFFF'
+    },
+    Titles:{
+        textAlign: 'center',
+        fontSize: 25,
+        fontWeight: '500',
+        color:'#000000'
     }
 })
 
@@ -94,9 +113,21 @@ const Registration = ({navigation}) => {
         )
 
     return (
+        
         <ScrollView
+        
             style={styles.container}
         >
+              <Text
+                style={styles.Titles}
+            >
+                Регистрация
+            </Text>
+            <Text
+                style={{color: '#959595', textAlign: 'center'}}
+            >
+                Заполните все поля, чтобы создать аккаунт
+            </Text>
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
@@ -129,10 +160,17 @@ const Registration = ({navigation}) => {
                     }
                 }
             >
-                <Button
-                    title={'Регистрация'}
+                 <TouchableOpacity
+                    style={styles.button}
                     onPress={createUser}
-                />
+                >
+                    <Text
+                        style={styles.buttonText}
+                    >
+                        Регистрация
+                    </Text>
+                </TouchableOpacity>
+                
             </View>
            
             <View 
@@ -144,7 +182,31 @@ const Registration = ({navigation}) => {
                     }
                 }
             >
-                <Text> Забыли логин или пароль? </Text>
+            
+                <Text
+                    style={{color: '#959595'}}
+                >   
+                    Уже есть аккаунт?
+               
+                <TouchableOpacity
+                    onPress={
+                        () => {
+                            navigation.push('Login')
+                        }
+                    }
+                >
+                    <Text
+                        style={{color: '#2F80ED'}}
+                    >
+                        Войдите
+                    </Text>
+                </TouchableOpacity>
+                </Text> 
+                <Text
+                    style={{color: '#2F80ED'}}
+                >   
+                    Забыли логин или пароль?  
+                </Text>
             </View>
         </ScrollView>
     )

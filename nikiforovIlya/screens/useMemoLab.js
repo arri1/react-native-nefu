@@ -1,5 +1,5 @@
 import React, {useState,useMemo} from 'react'
-import {Text, TouchableOpacity, View} from 'react-native'
+import {Text, Image,TouchableOpacity, View} from 'react-native'
 
 const sum = n => {
     return n + n

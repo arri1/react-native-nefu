@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native'
+import {SafeAreaView,Image, Text, TouchableOpacity, View} from 'react-native'
 
 const UseStateLab = () => {
     const [color, setColor] = useState('red')
