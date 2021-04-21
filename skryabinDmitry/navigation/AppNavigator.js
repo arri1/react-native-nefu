@@ -5,12 +5,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import AddTaskNavigator from './AddTaskNavigator'
+import ProfileNavigator from './ProfileNavigator'
 
 
 import MainScreen from '../screens/MainScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 import { StackRouter } from 'react-navigation';
 import TaskScreen from '../screens/TaskScreen';
+import { BackgroundImage } from 'react-native-elements/dist/config';
 
 const Stack = createStackNavigator()
 
@@ -21,7 +23,8 @@ const createHomeStack = () => (
       component = { MainScreen }
       options = {{
         title: 'Главная'
-      }} />
+      }} 
+      />
   </Stack.Navigator>
 )
 
@@ -42,7 +45,7 @@ const AppNavigator = ()=>{
   return (
           <Tab.Navigator
             tabBarOptions = {{
-              activeTintColor: '#5cf4f3'
+              activeTintColor: '#374e8c'
             }}
           >
               <Tab.Screen 
@@ -67,7 +70,7 @@ const AppNavigator = ()=>{
               />
               <Tab.Screen 
                   name="settings" 
-                  component={ createProfileStack }
+                  component={ ProfileNavigator }
                   options={{
                     tabBarLabel: 'Профиль',
                     tabBarIcon: ({ color, size }) => (

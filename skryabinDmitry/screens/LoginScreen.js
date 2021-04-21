@@ -8,7 +8,6 @@ import {AUTH_USER} from "../gqls/auth/mutations"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
-const image = { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png" };
 
 const Login = ({ navigation })=>{
     console.log("Логин")
@@ -97,96 +96,102 @@ const Login = ({ navigation })=>{
             <LoadingBar/>
         )
     return(
-        <SafeAreaView>
-            <Image
-                source={image}
-                style={styles.logo}>
-            </Image>
+        <SafeAreaView style = { styles.container }>
+            <Text style = { styles.logo }>
+                TASK's
+            </Text>
 
-            <TextInput
-                onChangeText={text => setLogin(text)}
-                value={login}
-                style={[styles.input, {marginTop: 30}]}
-                placeholder={'Введите логин'}
-            />
-            <TextInput
-                onChangeText={text => setPassword(text)}
-                value={password}
-                style={[styles.input, {marginTop: 15}]}
-                placeholder={'Введите пароль'}
-                secureTextEntry={true}
-            />
+            <View>
+                <View style = { styles.description_text_container }>
+                    <Text style = { styles.text }>
+                        Войдите в приложение
+                    </Text>
+                </View>
 
-            <TouchableOpacity
-                style={styles.tch_opacity_login}
-                title={'Log In'}
-                onPress={() => 
-                    {
-                        onAuth()
-                        console.log("Pressed")
-                    }
-                }>
-            
-                <Text style={{marginTop:10}}>Войти</Text>
-            </TouchableOpacity>
+                <TextInput
+                    onChangeText={text => setLogin(text)}
+                    value={login}
+                    style={[styles.input, {marginTop: 30}]}
+                    placeholder={'Введите логин'}
+                />
+                <TextInput
+                    onChangeText={text => setPassword(text)}
+                    value={password}
+                    style={[styles.input, {marginTop: 15}]}
+                    placeholder={'Введите пароль'}
+                    secureTextEntry={true}
+                />
+                <TouchableOpacity
+                    style={styles.tch_opacity_login}
+                    title={'Log In'}
+                    onPress={() => 
+                        {
+                            onAuth()
+                            console.log("Pressed")
+                        }
+                    }>
+                
+                    <Text style={{ color: '#fff', fontSize: 15 }}>Войти</Text>
+                </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity
-                style={styles.tch_opacity_sign_up}
-                title={'Log In'}
-                onPress={()=>{
-                    navigation.push('Registration')
-                }}
-            >
-                <Text style={{marginTop:10}}>Регистрация</Text>
-            </TouchableOpacity>
+
+            <View style={ styles.tch_opacity_sign_up }>
+                <Text>
+                    Нет аккаунта? 
+                </Text>
+                <TouchableOpacity
+                    title={'Log In'}
+                    onPress={()=>{
+                        navigation.push('Registration')
+                    }}
+                >
+                    <Text style={{ color: '#374e8c' }}> Регистрация</Text>
+                </TouchableOpacity>
+            </View>
 
     </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        marginHorizontal: 50,
+        marginVertical: 50,
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
     tch_opacity_login: {
-        marginTop:35,
-        height: 40,
-        alignItems:'center',
-        backgroundColor: '#3abeff',
-        marginLeft: 50,
-        marginRight:50,
-        borderRadius:50
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+        height: 50,
+        backgroundColor: '#374e8c',
+        borderRadius: 10,
+        alignSelf: 'stretch',
     },
     tch_opacity_sign_up: {
-        marginTop:10,
-        height: 40,
-        alignItems:'center',
-        borderColor: 'lightblue',
-        borderWidth: 1,
-        marginLeft: 50,
-        marginRight:50,
-        borderRadius:50
-    },
-    tch_opacity_test: {
-        marginTop:50,
-        height: 40,
-        alignItems:'center',
-        backgroundColor: 'lightblue',
-        marginLeft: 50,
-        marginRight:50,
-        borderRadius:50
+        flexDirection: 'row'
     },
     logo:{
+        color: '#374e8c',
+        fontSize: 50,
+        fontWeight: 'bold'
+    },
+    description_text_container: {
         marginTop:20,
-        width: 160,
-        height: 160,
-        alignSelf:'center',
-        //Below lines will help to set the border radius
-        borderRadius: 50,
-        overflow: 'hidden',
+        marginBottom: -10,
+        width: '100%',
+        justifyContent: 'flex-start'
+    },
+    text: {
+        fontSize: 20
     },
     input: {
-        borderWidth: 0.5,
+        borderWidth: 1,
+        borderColor: '#374e8c',
         borderRadius: 10,
-        marginLeft: 15,
-        marginRight: 15,
         alignSelf: 'stretch',
 
     }
