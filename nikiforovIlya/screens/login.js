@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
-import {AsyncStorage, Button, StyleSheet, Text, TextInput, View} from "react-native"
-import {useApolloClient, useMutation, useQuery} from "@apollo/client"
-import {showMessage} from "react-native-flash-message"
-import {USER} from "../gqls/user/queries"
+import React, { useState } from 'react'
+import { AsyncStorage, TouchableOpacity, Button, StyleSheet, Text, TextInput, View } from "react-native"
+import { useApolloClient, useMutation, useQuery } from "@apollo/client"
+import { showMessage } from "react-native-flash-message"
+import { USER } from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
-import {AUTH} from "../gqls/user/mutations"
+import { AUTH } from "../gqls/user/mutations"
+
 
 const styles = StyleSheet.create({
     container: {
@@ -14,19 +15,43 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 0.5,
-        borderRadius: 10,
+        borderRadius: 20,
         alignSelf: 'stretch',
+    },
+    button: {
+        minWidth: 180,
+        backgroundColor: '#197BDD',
+        borderRadius: 50,
+        minHeight:50,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    buttonText: {
+        fontSize: 14,
+        fontWeight: '500',
+        color:'#FFFFFF'
+    },
+    Titles:{
+        textAlign: 'center',
+        fontSize: 25,
+        fontWeight: '500',
+        marginTop: 20,
+        color:'#000000'
     }
+        
+    
+
+    
 })
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
     const apollo = useApolloClient()
 
-    const {loading: userLoading} = useQuery(USER, {
-        onCompleted: ({user}) => {
+    const { loading: userLoading } = useQuery(USER, {
+        onCompleted: ({ user }) => {
             if (user)
                 navigation.push('tabNavigators')
         },
@@ -35,24 +60,24 @@ const Login = ({navigation}) => {
         }
     })
 
-    const [auth, {loading: authLoading}] = useMutation(AUTH, {
-        onCompleted: async ({authUser}) => {
+    const [auth, { loading: authLoading }] = useMutation(AUTH, {
+        onCompleted: async ({ authUser }) => {
             await AsyncStorage.setItem('token', authUser.token)
             showMessage({
-                message: 'Регистрация прошла успешно',
+                message: 'Авторизация прошла успешно',
                 type: 'info'
             })
-            apollo.writeQuery({query: USER, data: {user: authUser.user}})
+            apollo.writeQuery({ query: USER, data: { user: authUser.user } })
             navigation.replace('tabNavigators')
         },
-        onError: ({message}) => {
+        onError: ({ message }) => {
             console.log(message)
-            if (message==='GraphQL error: Incorrect password'){
+            if (message === 'GraphQL error: Incorrect password') {
                 showMessage({
                     message: 'Неверен пароль',
                     type: 'danger'
                 })
-                return  null
+                return null
             }
             showMessage({
                 message: 'Что то пошло не так',
@@ -93,33 +118,50 @@ const Login = ({navigation}) => {
 
     if (userLoading || authLoading)
         return (
-            <LoadingBar/>
+            <LoadingBar />
         )
     return (
         <View style={styles.container}>
+            <Text
+                style={styles.Titles}
+            >
+                Авторизация
+            </Text>
+            <Text
+                style={{color: '#959595', marginTop: 80}}
+            >
+                Введите свою логин и пароль, чтобы войти
+            </Text>
+           
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
-                style={[styles.input, {marginTop: 8}]}
+                style={[styles.input, { marginTop: 8 }]}
                 placeholder={'Введите логин'}
             />
             <TextInput
                 onChangeText={text => setPassword(text)}
                 value={password}
-                style={[styles.input, {marginTop: 8}]}
+                style={[styles.input, { marginTop: 8 }]}
                 placeholder={'Введите пароль'}
                 secureTextEntry={true}
             />
             <View
                 style={
-                    {marginTop: 24}
+                    { marginTop: 24 }
                 }
 
             >
-                <Button
-                    title={'Авторизация'}
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={onAuth}
-                />
+                >
+                    <Text
+                        style={styles.buttonText}
+                    >
+                        Войти
+                    </Text>
+                </TouchableOpacity>
             </View>
             <View
                 style={
@@ -129,26 +171,36 @@ const Login = ({navigation}) => {
                 }
 
             >
-                <Button
-                    title={'Регистрация'}
-                    style={{paddingTop: 24}}
-                    onPress={
-                        () => {
-                            navigation.push('Registration')
-                        }
-                    }
-                />
+
             </View>
-            <View 
-                
+            <View
+
                 style={
                     {
                         marginTop: 8,
                         alignItems: 'center'
                     }
                 }
-            >
-                <Text> Забыли логин или пароль? </Text>
+            >     
+                <Text
+                    style={{color: '#959595'}}
+                >   
+                    Нет аккаунта? 
+                 
+                <TouchableOpacity
+                    onPress={
+                        () => {
+                            navigation.push('Registration')
+                        }
+                    }
+                >
+                    <Text
+                        style={{color: '#2F80ED'}}
+                    >
+                        Зарегистрируйтесь
+                    </Text>
+                </TouchableOpacity>
+                </Text>
             </View>
         </View>
     )

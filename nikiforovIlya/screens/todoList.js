@@ -1,59 +1,67 @@
-import React, {useEffect, useState} from 'react'
-import {SafeAreaView, ScrollView,StyleSheet} from 'react-native'
-import axios from 'axios'
-import TodoListItem from '../components/todoListItem'
+import React, { useState } from 'react';
+import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import Header from '../components/header';
+import TodoItem from '../components/todoItem';
+import AddTodo from '../components/addTodo';
+
+export default function App() {
+  const [todos, setTodos] = useState([
+    { text: 'Сыграть в шашки', key: '1' },
+    { text: 'Создать приложение', key: '2' },
+    { text: 'Сходить в парикмахерскую', key: '3' },
+  ]);
+
+  const pressHandler = (key) => {
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => todo.key != key);
+    });
+  };
+
+  const submitHandler = (text) => {
+    if(text.length > 3){
+      setText('');
+      setTodos(prevTodos => {
+        return [
+          { text, key: Math.random().toString() },
+          ...prevTodos
+        ];
+      });
+    } else {
+      Alert.alert('Ой', 'В Todo должно быть более 3 символов.', [
+        {text: 'Понял', onPress: () => console.log('предупреждение закрыто') }
+      ]);
+    }
+  };
+
+  return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.content}>
+          <AddTodo submitHandler={submitHandler} />
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <TodoItem item={item} pressHandler={pressHandler} />
+              )}
+            />
+          </View>
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
 
 const styles = StyleSheet.create({
-    statusBar: {
-      backgroundColor: "#7F39FB",
-      color: "#fff",
-      width: "100%",
-      height: 30
-    },
-    container: {
-      flex: 1,
-      backgroundColor: "#fff",
-      alignItems: "center",
-      justifyContent: "flex-start"
-    },
-    todo: {
-      flexDirection: "row",
-      width: "100%",
-      justifyContent: "center",
-      alignItems: "center"
-    },
-    textbox: {
-      borderWidth: 1,
-      borderColor: "#7F39FB",
-      borderRadius: 8,
-      padding: 10,
-      margin: 10,
-      width: "80%"
-    }
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  content: {
+    padding: 40,
+  },
+  list: {
+    marginTop: 20,
+  },
 });
-const TodoList = () => {
-    const [data, setData] = useState([])
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then(({data}) => {
-            setData(data)
-        })
-    }, [])
-    return (
-        <SafeAreaView>
-            <ScrollView>
-                {
-                    data.map(item => {
-                        return (
-                            <TodoListItem
-                                title={item.title}
-                                body={item.body}
-                                key={item.id}
-                            />
-                        )
-                    })
-                }
-            </ScrollView>
-        </SafeAreaView>
-    )
-}
-export default TodoList

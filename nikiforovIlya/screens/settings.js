@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {AsyncStorage, Button, StyleSheet, Text, TextInput, View} from 'react-native'
+import {AsyncStorage,Image,TouchableOpacity, Button, StyleSheet, Text, TextInput, View} from 'react-native'
 import {useApolloClient, useMutation, useQuery} from "@apollo/client"
 import {USER} from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
@@ -13,13 +13,50 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        margin: 15
+        backgroundColor: '#fff',
+        alignItems: "center",
+        height: 80,
+        paddingTop: 38,
+        justifyContent: "flex-start"
+        
     },
     input: {
+        minWidth: 180,
+        minHeight: 20,
         borderWidth: 0.5,
-        borderRadius: 10,
+        borderRadius: 20,
         alignSelf: 'stretch',
-        marginTop: 24
+        justifyContent:'center',
+        marginTop: 14,
+        margin: 14
+    },
+    button: {
+        minWidth: 180,
+        backgroundColor: '#197BDD',
+        borderRadius: 50,
+        minHeight:50,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    buttonText: {
+        fontSize: 14,
+        fontWeight: '500',
+        color:'#FFFFFF'
+    },
+    avatar:{
+        flexDirection: "row",
+        backgroundColor: '#D5E6FB',
+        width: "36%",
+        marginTop: 10,
+        marginRight: 150,
+        marginVertical: 80,
+        padding: 50
+    },
+    title: {
+        textAlign: 'center',
+        color: '#000000',
+        fontSize: 20,
+        fontWeight: 'bold',
     }
 })
 
@@ -117,8 +154,12 @@ const Settings = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Настройки</Text>
-            <Text style={styles.namepro}>Profile name</Text>
+        <Text style={styles.title}>Профиль</Text> 
+            <Text 
+                style={styles.avatar}
+            >
+                avatar
+            </Text>           
             <TextInput
                 onChangeText={(text) => setName(text)}
                 value={name}
@@ -153,10 +194,16 @@ const Settings = ({navigation}) => {
                     }
                 }
             >
-                <Button
-                    title={'Сохранить'}
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={onSave}
-                />
+                >
+                    <Text
+                        style={styles.buttonText}
+                    >
+                        Сохранить
+                    </Text>
+                </TouchableOpacity>
             </View>
             <View
                 style={
@@ -166,10 +213,16 @@ const Settings = ({navigation}) => {
                     }
                 }
             >
-                <Button
-                    title={'Выйти'}
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={logOut}
-                />
+                >
+                    <Text
+                        style={styles.buttonText}
+                    >
+                        Выйти
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
