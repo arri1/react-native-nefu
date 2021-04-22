@@ -7,7 +7,6 @@ import { UPDATE_USER } from '../gqls/auth/mutations'
 import { showMessage } from 'react-native-flash-message'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Settings_Edit_Profile from './settings_edit_profile'
 
 //TODO: Add change name too
 

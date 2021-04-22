@@ -5,7 +5,7 @@ import Loader from '../screens/loader'
 import Login from '../screens/login'
 import LabsViewNavigator from './labsViewNavigator'
 import Registration from '../screens/registration'
-import Settings_Edit_Account from '../screens/settings_edit_profile'
+import Settings_Edit_Account from '../screens/settingsEditProfile'
 
 const Stack = createStackNavigator()
 
