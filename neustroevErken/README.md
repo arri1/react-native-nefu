@@ -1,0 +1,1 @@
+ссылка на фигму https://www.figma.com/file/h5N6KElfkOZHEoKADDsVZT/Erken?node-id=1%3A6

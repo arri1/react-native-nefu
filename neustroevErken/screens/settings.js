@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import { Button, StyleSheet, Text, TextInput, View} from 'react-native'
 import {AsyncStorage} from "@react-native-async-storage/async-storage"
 import {useApolloClient, useMutation, useQuery} from "@apollo/client"
-import {USER} from "../gqls/user/queries"
-import LoadingBar from "../components/loadingBar"
-import {UPDATE_USER} from "../gqls/user/mutations"
 import {showMessage} from "react-native-flash-message"
+import LoadingBar from "../components/loadingBar"
+import {USER} from "../gqls/user/queries"
+import {UPDATE_USER} from "../gqls/user/mutations"
 
 const styles = StyleSheet.create({
     title: {
