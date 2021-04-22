@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 import {Button, SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native'
 import {useMutation, useQuery} from '@apollo/react-hooks'
+import {showMessage} from 'react-native-flash-message'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+
+
 import {USER} from '../gqls/auth/queries'
 import LoadingBar from '../components/loadingBar'
 import {UPDATE_USER} from '../gqls/auth/mutations'
-import {showMessage} from 'react-native-flash-message'
-
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 const Profile = ({navigation}) => {
@@ -17,6 +16,20 @@ const Profile = ({navigation}) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [group, setGroup] = useState('')
     const [name, setName] = useState('')
+
+
+    const shadowOpt = {
+        width:100,
+        height:100,
+        color:"#000",
+        border:2,
+        radius:3,
+        opacity:0.2,
+        x:0,
+        y:3,
+        style:{marginVertical:5}
+    }
+
 
     const {loading: userLoading} = useQuery(USER, {
         onCompleted: ({user}) => {
@@ -84,6 +97,7 @@ const Profile = ({navigation}) => {
         if (password)
             variables.data.password = {set: password}
         save({variables})
+        //navigation.navigate('ProfileScreen')
     }
 
     if (userLoading || saveLoading)
@@ -93,7 +107,6 @@ const Profile = ({navigation}) => {
 
     return (
         <SafeAreaView style={ styles.container }>
-            <Text style={styles.title}>Настройки</Text>
             <View>
                 <Text style = { styles.title_text }>
                     Общие данные
@@ -152,16 +165,17 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
+        textAlign: 'center'
     },
     title_text: {
-        fontSize: 15,
-        marginBottom: 5
+        fontSize: 13,
+        marginTop: 5,
+        marginBottom: 10
     },  
     input: {
-        marginBottom: 15,
-        borderWidth: 1,
-        borderColor: '#374e8c',
-        borderRadius: 10,
+        marginBottom: 5,
+        backgroundColor: '#fff',
+        elevation: 4,
         alignSelf: 'stretch',
     },
     button_view:{
@@ -170,8 +184,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         height: 50,
         backgroundColor: '#374e8c',
-        borderRadius: 10,
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
+        elevation: 4,
     },
     button_text: {
         color: '#fff',

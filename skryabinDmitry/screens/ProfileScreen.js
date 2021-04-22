@@ -1,20 +1,16 @@
-import React, {useState} from 'react'
-import {Button, SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native'
-import {useMutation, useQuery} from '@apollo/react-hooks'
-import {USER} from '../gqls/auth/queries'
-import LoadingBar from '../components/loadingBar'
-import {UPDATE_USER} from '../gqls/auth/mutations'
-import {showMessage} from 'react-native-flash-message'
+import React from 'react'
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native'
+import {useQuery} from '@apollo/react-hooks'
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
+import {USER} from '../gqls/auth/queries'
+
+
 const Profile = ({navigation}) => {
     const logOut = async () => {
-        //apollo.writeQuery({query: USER, data: {user: null}})
         await AsyncStorage.setItem('token', '')
         navigation.replace('Login')
     }
@@ -23,38 +19,33 @@ const Profile = ({navigation}) => {
         navigation.navigate('EditProfileScreen')
     }
 
-    const UserData = () => {
-        const user = useQuery(USER)
-        const user_login = {
-            'login': user.data.user.login,
-            'name': user.data.user.name,
-            'group': user.data.user.group
-        }
-        return (
-            user_login
-        )
+    const user = useQuery(USER)
+    const user_login = {
+        'login': user.data.user.login,
+        'name': user.data.user.name,
+        'group': user.data.user.group
     }
 
 
     return (
         <SafeAreaView style={styles.container}>
             <View style = {{ alignItems: 'center' }}>
-                <Icon name="user-circle" size={ 100 } color = "#374e8c"  />
+                <Icon name="user-circle" size={ 100 } color = "#374e8c" style = {{ marginBottom: 10 }} />
                 <View style = { styles.text_container }>
                     <Text style = { styles.text }>
-                        { UserData().login }
+                        { user_login.login }
                     </Text>
                     <Text style = {[ styles.text, { marginTop: 20 } ]}>
-                        { UserData().name }
+                        { user_login.name }
                     </Text>
                     <Text style = { styles.text }>
-                        { UserData().group }
+                        { user_login.group }
                     </Text>
                 </View>
             </View>
             <View style = {{ alignItems: 'center' }}>
                 <TouchableOpacity
-                    style={[ styles.logout, { marginBottom: 20 } ]}
+                    style={[ styles.button_view, { marginBottom: 20 } ]}
                     title={'Update'}
                     onPress={() => 
                         {
@@ -62,7 +53,7 @@ const Profile = ({navigation}) => {
                         }
                     }>
                 
-                    <Text style={ styles.logout }>Редактировать</Text>
+                    <Text style={ styles.button_text }>Редактировать</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.logout}
@@ -97,6 +88,20 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20
+    },
+    button_view:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+        height: 50,
+        width: 260,
+        backgroundColor: '#374e8c',
+        alignSelf: 'stretch',
+        elevation: 4,
+    },
+    button_text: {
+        color: '#fff',
+        fontSize: 15
     }
 })
 

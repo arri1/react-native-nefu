@@ -4,7 +4,7 @@ import {SafeAreaView, Text} from 'react-native'
 const Loader = ({ navigation }) => {
   navigation.replace('Login')
     return (
-        <SafeAreaView>
+        <SafeAreaView style = {{ backgroundColor: '#374e8c' }}>
             <Text>Приветсвую!</Text>
         </SafeAreaView>
     )

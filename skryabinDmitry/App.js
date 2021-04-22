@@ -10,6 +10,7 @@ import { View } from 'react-native'
 import RootStackNavigator from './navigation/RootStackNavigator'
 import AppNavigator from './navigation/AppNavigator'
 
+global.g_complete_percent = 0
 
 
 const App = () => {

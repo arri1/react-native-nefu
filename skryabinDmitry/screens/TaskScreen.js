@@ -5,8 +5,8 @@ import { FlatList } from 'react-native-gesture-handler'
 
 import Task from '../components/Task'
 
-const TaskScreen = ({ navigation, route }) => {
 
+const TaskScreen = ({ navigation, route }) => {
 
   const [tasks, setTasks] = useState([])
   const [compleateTask, setcompleateTask] = useState([])
@@ -30,13 +30,13 @@ const TaskScreen = ({ navigation, route }) => {
       ...prev
     ])
     setTasks(prev => prev.filter(item => item.id !== id))
-    console.log(compleateTask)
   }
 
   useEffect(() => {
     if (route.params?.taskname) {
       addTask(route.params.taskname)
     }
+    
   }, [route.params?.taskname]);
 
   const goToAddTask = () => {
@@ -57,7 +57,7 @@ const TaskScreen = ({ navigation, route }) => {
             />
           </View>
           <View>
-          <Text style = { styles.description }>
+            <Text style = { styles.description }>
               Выполнено
             </Text>
             <FlatList
@@ -113,14 +113,17 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   container:{
-    marginVertical:20,
-    marginHorizontal: 20,
+    marginVertical: 20,
+    marginHorizontal: 10,
     flex: 1,
+  },
+  shadow: {
+    elevation: 4
   },
   fixedView:{
     position: 'absolute',
     right: 20,
-    bottom: 20,
+    bottom: 10,
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },

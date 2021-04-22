@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
-import {View,SafeAreaView,TouchableOpacity,Text,TextInput,StyleSheet, Button, Image} from 'react-native'
+import {View,SafeAreaView,TouchableOpacity,Text,TextInput,StyleSheet} from 'react-native'
 import {useApolloClient, useMutation, useQuery} from "@apollo/react-hooks"
 import {showMessage} from "react-native-flash-message"
-import {USER} from "../gqls/auth/queries"
-import LoadingBar from "../components/loadingBar"
-import {AUTH_USER} from "../gqls/auth/mutations"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
+import {USER} from "../gqls/auth/queries"
+import LoadingBar from "../components/loadingBar"
+import {AUTH_USER} from "../gqls/auth/mutations"
+
 
 const Login = ({ navigation })=>{
-    console.log("Логин")
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
@@ -20,7 +20,6 @@ const Login = ({ navigation })=>{
         onCompleted: ({ user }) => {
             if (user)
             {
-                console.log(user)
                 navigation.replace('AppNavigator')
                 showMessage({
                     message: 'Авто-логинизация',
@@ -43,7 +42,6 @@ const Login = ({ navigation })=>{
             apollo.writeQuery({query: USER, data: {user: authUser.user}})
             
             navigation.replace('AppNavigator')
-            console.log("Мы в системе!")
         },
         onError: ({message}) => {
             console.log(message)
@@ -165,11 +163,11 @@ const styles = StyleSheet.create({
     tch_opacity_login: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 20,
+        marginTop: 40,
         height: 50,
         backgroundColor: '#374e8c',
-        borderRadius: 10,
         alignSelf: 'stretch',
+        elevation: 4
     },
     tch_opacity_sign_up: {
         flexDirection: 'row'
@@ -189,11 +187,10 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     input: {
-        borderWidth: 1,
-        borderColor: '#374e8c',
-        borderRadius: 10,
+        marginBottom: 0,
+        backgroundColor: '#fff',
+        elevation: 4,
         alignSelf: 'stretch',
-
     }
 })
 

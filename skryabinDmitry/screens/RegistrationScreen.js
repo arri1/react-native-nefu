@@ -1,18 +1,18 @@
 import React,{useState} from 'react'
-import {Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, TextInput, Text} from 'react-native'
+import {StyleSheet, View, SafeAreaView, TouchableOpacity, TextInput, Text} from 'react-native'
 import {showMessage} from "react-native-flash-message"
 import {useApolloClient, useMutation} from "@apollo/react-hooks"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 import {REGISTER_USER} from '../gqls/auth/mutations'
 import {USER} from "../gqls/auth/queries"
 
+
 import LoadingBar from "../components/loadingBar"
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Registration = ({ navigation }) => {
-
-    console.log("Страница Регистрации")
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
@@ -132,7 +132,7 @@ const Registration = ({ navigation }) => {
                         }
                     }>
                 
-                    <Text style={{ color: '#fff', fontSize: 15 }}>Войти</Text>
+                    <Text style={{ color: '#fff', fontSize: 15 }}> Зарегестрироваться </Text>
                 </TouchableOpacity>
             </View>
 
@@ -165,14 +165,11 @@ const styles = StyleSheet.create({
     tch_opacity_login: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 20,
+        marginTop: 40,
         height: 50,
         backgroundColor: '#374e8c',
-        borderRadius: 10,
         alignSelf: 'stretch',
-    },
-    tch_opacity_sign_up: {
-        flexDirection: 'row'
+        elevation: 4
     },
     logo:{
         color: '#374e8c',
@@ -189,11 +186,10 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     input: {
-        borderWidth: 1,
-        borderColor: '#374e8c',
-        borderRadius: 10,
+        marginBottom: 0,
+        backgroundColor: '#fff',
+        elevation: 4,
         alignSelf: 'stretch',
-
     }
 })
 

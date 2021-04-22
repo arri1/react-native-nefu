@@ -16,7 +16,7 @@ const AddTaskScreen = ({ navigation }) => {
   return (
     <SafeAreaView style = { styles.container }>
     <View>
-      <Text>
+      <Text style = { styles.text }>
         Описание
       </Text>
       <TextInput
@@ -48,12 +48,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    fontSize: 15
+    fontSize: 15,
+    marginBottom: 10
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#374e8c',
-    borderRadius: 10,
+    marginBottom: 15,
+    backgroundColor: '#fff',
+    elevation: 4,
     alignSelf: 'stretch',
   },
   submit: {
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     height: 50,
     backgroundColor: '#374e8c',
-    borderRadius: 10,
     alignSelf: 'stretch',
+    elevation: 4,
   }
 })
 

@@ -18,13 +18,13 @@ const Task = ({ task, onCompleate }) => {
 
 const styles = StyleSheet.create({
     task: {
-        marginBottom: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 15,
-        borderWidth: 1,
-        borderColor: '#374e8c',
-        borderRadius: 10
+        marginBottom: 5,
+        height: 60,
+        backgroundColor: '#fff',
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        paddingLeft: 10,
+        elevation: 1
     }
 })
 export default Task
