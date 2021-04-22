@@ -8,6 +8,11 @@ import {
     StyleSheet } 
 from 'react-native'
 
+import image1 from '../images/batmage.png'
+import image2 from '../images/dimalalka.png'
+import image3 from '../images/graphql.png'
+import image4 from '../images/masta.png'
+
 const { width, height } = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
@@ -16,10 +21,10 @@ const styles = StyleSheet.create({
     },
     paddings: {
         marginBottom: 20,
-        marginStart: 10,
-        marginEnd: 10,
-        borderRadius: 30,
-        backgroundColor: '#d0cbcb',
+        marginStart: 20,
+        marginEnd: 20,
+        borderRadius: 50,
+        backgroundColor: '#FAEBD7',
         padding: 20
     },
     text_title:{
@@ -43,19 +48,34 @@ const styles = StyleSheet.create({
     }
 })
 
-const image = { uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png" };
+//const image1 = { uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png" };
+
+const randomArrayImage = [
+{ uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png" },
+{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/600px-DC_Comics_logo.png" },
+{ uri: "https://i1.sndcdn.com/avatars-000780790396-z317ol-t500x500.jpg" },
+image1,
+image2,
+image3,
+image4,
+]
+const randomIndex=()=>{
+    const rand = Math.floor(Math.random()*7)
+    return rand
+}
 
 const TodoListItem = ({ title, body, author_key }) => {
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.paddings}>
                 <View style={styles.image_and_text_row}>
-                    <ImageBackground source={image} style={styles.image_round}/>
+                    <ImageBackground source={randomArrayImage[randomIndex()]} style={styles.image_round}/>
 
                     <View style={{marginLeft: 10}}>
                         <Text numberOfLines={1} style={styles.text_title}>{title}</Text>
                         
-                        <Text style={styles.text_author}>Posted by author_{author_key}</Text>
+                        <Text style={styles.text_author}>Posted by author_{randomIndex()}</Text>
                     </View>
                 </View>
 
