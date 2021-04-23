@@ -1,39 +1,33 @@
-import React, { useState, useEffect } from 'react'
-import { View, SafeAreaView, StyleSheet, FlatList } from 'react-native'
+import 'react-native-gesture-handler'
+
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import {NavigationContainer} from '@react-navigation/native'
+import {ApolloProvider} from '@apollo/client'
+import FlashMessage from "react-native-flash-message";
 
 
-import axios from 'axios'
+import apollo from './utils/apollo'
 
 
-import ToDo from './components/ToDo'
+import LoginNavigator from './navigators/loginNavigator'
 
 const App = () => {
-  const url = 'https://my-json-server.typicode.com/typicode/demo/posts'
-  const [data, setData] = useState([])
-  useEffect(() => {
-      axios.get(url).then((response) => { 
-        setData(response.data)
-      })
-  }, [])
-
   return (
-      <SafeAreaView style = { styles.container }>
-        <FlatList
-          data = { data }
-          renderItem = { ({ item })  => <ToDo task = { item.title } /> }
-          keyExtractor = { item => item.id.toString() } 
-      />
-      </SafeAreaView>
-  )
+    <View style={ styles.container }>
+      <ApolloProvider client={ apollo }>
+        <NavigationContainer>
+            <LoginNavigator />
+        </NavigationContainer>
+      </ApolloProvider>
+      <FlashMessage position="top"/>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
     container:{
-        marginHorizontal: 50,
-        marginVertical: 50,
-        flex: 1,
-        justifyContent: 'space-evenly',
-        alignItems: 'center'
+        flex: 1
     }
 })
 
