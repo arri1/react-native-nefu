@@ -1,41 +1,30 @@
-import React, { useState } from 'react'
-import { View, SafeAreaView, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, SafeAreaView, StyleSheet, FlatList } from 'react-native'
 
 
+import axios from 'axios'
+
+
+import ToDo from './components/ToDo'
 
 const App = () => {
-  const [color, changeColor] = useState(0)
+  const url = 'https://my-json-server.typicode.com/typicode/demo/posts'
+  const [data, setData] = useState([])
+  useEffect(() => {
+      axios.get(url).then((response) => { 
+        setData(response.data)
+      })
+  }, [])
 
-    const colors = [
-        'red',
-        'green',
-        'yellow',
-        'blue',
-        'black' 
-    ]
-
-    const pressHandler = () => {
-        changeColor(color + 1)
-        if (color > 3){
-            changeColor(0)
-        }
-    }
-
-    return (
-        <SafeAreaView style = { styles.container }>
-            <View style = {[ styles.circle, { backgroundColor: colors[color] }]}>
-
-            </View>
-            <TouchableOpacity 
-                style = { styles.button }
-                onPress = {pressHandler}
-            >
-                <Text style = { styles.text }>
-                    Сменить цвет
-                </Text>
-            </TouchableOpacity>
-        </SafeAreaView>
-    )
+  return (
+      <SafeAreaView style = { styles.container }>
+        <FlatList
+          data = { data }
+          renderItem = { ({ item })  => <ToDo task = { item.title } /> }
+          keyExtractor = { item => item.id.toString() } 
+      />
+      </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -45,22 +34,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-evenly',
         alignItems: 'center'
-    },
-    circle: {
-        width: 100,
-        height: 100,
-        borderRadius: 100
-    },
-    button: {
-        padding: 15,
-        backgroundColor: '#374e8c',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    text: {
-        color: '#fff',
-        fontSize: 20
     }
 })
 
 export default App;
+
+
