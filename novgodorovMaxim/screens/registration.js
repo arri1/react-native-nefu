@@ -1,25 +1,44 @@
 import React,{useState} from 'react'
-import {Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, TextInput, Text} from 'react-native'
+import {Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, Text} from 'react-native'
 import {showMessage} from "react-native-flash-message"
 import {useApolloClient, useMutation} from "@apollo/react-hooks"
 
 import {REGISTER_USER} from '../gqls/auth/mutations'
 import {USER} from "../gqls/auth/queries"
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import LoadingBar from "../components/loadingBar"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {TextInput, DefaultTheme} from 'react-native-paper'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 15,
+        margin: 25,
     },
     input: {
-        borderWidth: 0.5,
-        borderRadius: 10,
         alignSelf: 'stretch',
-    }
+        backgroundColor: 'white',
+    },
+    tch_opacity_create_acc: {
+        marginTop: 35,
+        height: 60,
+        alignItems: 'center',
+        backgroundColor: '#197BDD',
+        marginLeft: 80,
+        marginRight: 80,
+        borderRadius: 50
+    },
 })
+
+const theme = {
+    ...DefaultTheme,
+    roundness: 40,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#197BDD',
+      accent: '#f1c40f',
+    },
+  };
 
 const Registration = ({navigation}) => {
     const [login, setLogin] = useState('')
@@ -100,58 +119,58 @@ const Registration = ({navigation}) => {
         <ScrollView
             style={styles.container}
         >
-            <Text>Логин</Text>
+            <Text style={{marginTop:25, alignSelf:'center', fontSize:16}}>Заполните все поля для создания аккаунта</Text>
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
-                style={[styles.input,{marginTop: 8}]}
+                style={[styles.input,{marginTop: 20}]}
                 placeholder={'Введите логин'}
+                mode='outlined'
+                theme={theme}
+                left={
+                    <TextInput.Icon
+                    styles={{marginLeft:50}}
+                    name={()=><Icon name='user' size={24}/>}
+                    />
+                }
             />
-            <Text style={{marginTop: 24}}>Пароль</Text>
             <TextInput
                 onChangeText={text => setPassword(text)}
                 value={password}
                 secureTextEntry={true}
-                style={[styles.input, {marginTop: 8}]}
+                style={[styles.input, {marginTop: 20}]}
                 placeholder={'Введите пароль'}
+                mode='outlined'
+                theme={theme}
+                left={
+                    <TextInput.Icon
+                    styles={{marginLeft:50}}
+                    name={()=><Icon name='lock' size={24}/>}
+                    />
+                }
             />
             <TextInput
                 onChangeText={text => setConfirmPassword(text)}
                 value={confirmPassword}
                 secureTextEntry={true}
-                style={[styles.input, {marginTop: 8}]}
-                placeholder={'Повтарите пароль'}
+                style={[styles.input, {marginTop: 20}]}
+                placeholder={'Повторите пароль'}
+                mode='outlined'
+                theme={theme}
+                left={
+                    <TextInput.Icon
+                    styles={{marginLeft:50}}
+                    name={()=><Icon name='lock' size={24}/>}
+                    />
+                }
             />
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Создать'}
-                    onPress={createUser}
-                />
-            </View>
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Назад'}
-                    onPress={
-                        () => {
-                            navigation.goBack()
-                        }
-                    }
-                />
-            </View>
+            <TouchableOpacity
+                style={styles.tch_opacity_create_acc}
+                title={'Log In'}
+                onPress={() => {createUser()}}>
+                <Text style={{ fontSize:18, marginTop: 18, color:'white', }}>Create Account</Text>
+            </TouchableOpacity>
+
         </ScrollView>
     )
 }
