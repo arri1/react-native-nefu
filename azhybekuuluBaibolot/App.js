@@ -1,57 +1,18 @@
-import React, { useState } from 'react';
-import {
-    Dimensions,
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Button
-} from "react-native";
+import 'react-native-gesture-handler'
+import React from 'react'
+import {NavigationContainer} from '@react-navigation/native'
+import {ApolloProvider} from '@apollo/client'
+import apollo from './utils/apollo'
+import RootStackNavigator from './navigators/rootStackNavigator'
 
-const { height, width } = Dimensions.get('window')
-
-const randomHex = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
-
-const App = (props) => {
-    const [backgroundColor, setColor] = useState(randomHex())
-    const onClick = () => setColor(randomHex())
+const App = () => {
     return (
-        <View style={styles.mainContainer}>
-            <TouchableOpacity
-                onPress={onClick}
-                style={[
-                    styles.container,
-                    { backgroundColor: randomHex() }
-                ]}
-            >
-                <Text style={styles.instructions}>Change color</Text>
-            </TouchableOpacity>
-        </View >
-    );
+    <ApolloProvider client={apollo}>
+        <NavigationContainer>
+            <RootStackNavigator/>
+        </NavigationContainer>
+    </ApolloProvider>
+
+)
 }
-
-const styles = StyleSheet.create({
-    container: {
-        height,
-        width,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: randomHex(),
-    },
-    instructions: {
-        color: "white",
-    },
-    mainContainer: {
-        height,
-        width
-    }
-});
-
-export default App
+export default App;
