@@ -15,14 +15,15 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 0.5,
-        borderRadius: 20,
+        borderRadius: 5,
         alignSelf: 'stretch',
+        backgroundColor: '#F6F6F6',
         margin: 15
     },
     button: {
-        minWidth: 180,
+        minWidth: 350,
         backgroundColor: '#197BDD',
-        borderRadius: 50,
+        borderRadius: 5,
         minHeight:50,
         alignItems:'center',
         justifyContent:'center'
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: '500',
-        marginTop: 20,
+        marginTop: 50,
+        margin: 32,
         color:'#000000'
     }
         
@@ -130,23 +132,18 @@ const Login = ({ navigation }) => {
             >
                 Авторизация
             </Text>
-            <Text
-                style={{color: '#959595', marginTop: 80}}
-            >
-                Введите свою логин и пароль, чтобы войти
-            </Text>
            
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
                 style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Введите логин'}
+                placeholder={'Логин'}
             />
             <TextInput
                 onChangeText={text => setPassword(text)}
                 value={password}
                 style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Введите пароль'}
+                placeholder={'Пароль'}
                 secureTextEntry={true}
             
             />
@@ -181,16 +178,12 @@ const Login = ({ navigation }) => {
 
                 style={
                     {
-                        marginTop: 8,
+                        marginTop: 16,
                         alignItems: 'center'
                     }
                 }
             >     
-                <Text
-                    style={{color: '#959595'}}
-                >   
-                    Нет аккаунта? 
-                 
+        
                 <TouchableOpacity
                     onPress={
                         () => {
@@ -201,10 +194,10 @@ const Login = ({ navigation }) => {
                     <Text
                         style={{color: '#2F80ED'}}
                     >
-                        Зарегистрируйтесь
+                       Нет аккаунта? Зарегистрируйтесь
                     </Text>
                 </TouchableOpacity>
-                </Text>
+                
             </View>
         </View>
     )

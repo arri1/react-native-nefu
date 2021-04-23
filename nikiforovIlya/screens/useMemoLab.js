@@ -49,7 +49,7 @@ const useMemoLab = () => {
     }, [])
     return (
         <View style={styles.container}>
-        <Text style={styles.title}>Новости</Text> 
+        <Text style={styles.title}>Посты</Text> 
         <SafeAreaView>
             <ScrollView>
                 {

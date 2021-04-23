@@ -34,9 +34,9 @@ const UseStateLab = () => {
          
             <TouchableOpacity
                 style={{
-                    minWidth: 180,
+                    minWidth: 241,
                     backgroundColor: '#197BDD',
-                    borderRadius: 50,
+                    borderRadius: 5,
                     minHeight:50,
                     alignItems:'center',
                     justifyContent:'center'
@@ -48,13 +48,11 @@ const UseStateLab = () => {
                 <Text
                     style={{color:'#FFFFFF'}}
                 >
-                    Нажмите, чтобы изменить цвет
+                    Нажмите
                 </Text>
             </TouchableOpacity>
-            <View
-                style={{marginTop: 30, alignSelf: 'center', backgroundColor: color, width: '100%', height: 100}}
-            />
-            <Text style={{marginTop: 24}}>
+            
+            <Text style={{color:'#197BDD' ,marginTop: 24}}>
                 {'счет ' + count}
             </Text>
         </SafeAreaView>

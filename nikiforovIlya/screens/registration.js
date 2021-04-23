@@ -14,14 +14,15 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 0.5,
-        borderRadius: 20,
+        borderRadius: 5,
         alignSelf: 'stretch',
+        backgroundColor: '#F6F6F6',
         margin: 15
     },
     button: {
-        minWidth: 180,
+        minWidth: 350,
         backgroundColor: '#197BDD',
-        borderRadius: 50,
+        borderRadius: 5,
         minHeight:50,
         alignItems:'center',
         justifyContent:'center'
@@ -35,9 +36,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: '500',
-        marginTop: 30,
+        marginTop: 50,
+        margin: 32,
         color:'#000000'
     }
+    
 })
 
 const Registration = ({navigation}) => {
@@ -126,16 +129,12 @@ const Registration = ({navigation}) => {
             >
                 Регистрация
             </Text>
-            <Text
-                style={{color: '#959595', textAlign: 'center', marginTop: 80}}
-            >
-                Заполните все поля, чтобы создать аккаунт
-            </Text>
+
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
                 style={[styles.input,{marginTop: 8}]}
-                placeholder={'Введите логин'}
+                placeholder={'Логин'}
             />
             <TextInput
                 onChangeText={text => setPassword(text)}
@@ -180,17 +179,13 @@ const Registration = ({navigation}) => {
                 
                 style={
                     {
-                        marginTop: 8,
+                        marginTop: 32,
                         alignItems: 'center'
                     }
                 }
             >
             
-                <Text
-                    style={{color: '#959595'}}
-                >   
-                    Уже есть аккаунт?
-               
+            
                 <TouchableOpacity
                     onPress={
                         () => {
@@ -201,15 +196,10 @@ const Registration = ({navigation}) => {
                     <Text
                         style={{color: '#2F80ED'}}
                     >
-                        Войдите
+                       Уже есть аккаунт? Войдите
                     </Text>
                 </TouchableOpacity>
-                </Text> 
-                <Text
-                    style={{color: '#2F80ED'}}
-                >   
-                    Забыли логин или пароль?  
-                </Text>
+                
             </View>
         </ScrollView>
     )
