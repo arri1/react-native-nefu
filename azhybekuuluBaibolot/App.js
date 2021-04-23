@@ -1,23 +1,39 @@
 import React, { useState } from 'react';
-import {Dimensions, StyleSheet, Text, View, TouchableOpacity, Button
+import {
+    Dimensions,
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Button
 } from "react-native";
 
 const { height, width } = Dimensions.get('window')
 
+const randomHex = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+};
+
 const App = (props) => {
-    const [backgroundColor, setColor] = useState()
+    const [backgroundColor, setColor] = useState(randomHex())
+    const onClick = () => setColor(randomHex())
     return (
         <View style={styles.mainContainer}>
             <TouchableOpacity
+                onPress={onClick}
                 style={[
                     styles.container,
-                    { backgroundColor: "white" }
+                    { backgroundColor: randomHex() }
                 ]}
             >
-                <Text style={styles.instructions}>HELLOW WORLD!</Text>
+                <Text style={styles.instructions}>Change color</Text>
             </TouchableOpacity>
         </View >
-        
     );
 }
 
@@ -27,9 +43,10 @@ const styles = StyleSheet.create({
         width,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: randomHex(),
     },
     instructions: {
-        color: "black",
+        color: "white",
     },
     mainContainer: {
         height,
