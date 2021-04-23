@@ -3,12 +3,9 @@ import { View, StyleSheet, Text } from 'react-native'
 
 
 const toDo = (task) => {
-
-    console.log(task.task)
     return(
         <View style = { styles.container } >
             <Text>
-                lol
                 { task.task }
             </Text>
             
