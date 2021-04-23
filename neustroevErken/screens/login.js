@@ -1,22 +1,39 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from "react-native"
-import { AsyncStorage } from "@react-native-async-storage/async-storage"
+import { AsyncStorage, StyleSheet, Text, View, TouchableOpacity } from "react-native"
+import { Button } from 'react-native-elements';
+import { TextInput } from 'react-native-paper'
+//import { AsyncStorage } from "@react-native-async-storage/async-storage"
 import { useApolloClient, useMutation, useQuery } from "@apollo/client"
 import { showMessage } from "react-native-flash-message"
 import { USER } from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 import { AUTH } from "../gqls/user/mutations"
+//import TabNavigator from "../navigators/tabNavigator"
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        flex: 1,
-        margin: 15
+    title: {
+        textAlign: 'center',
+        fontSize: 32,
+        color: '#f6f6f6',
+        marginTop: 70,
+        marginVertical: 70,
+
     },
-    input: {
-        borderWidth: 0.5,
-        borderRadius: 10,
-        alignSelf: 'stretch',
+    container: {
+        //alignItems: 'center',
+        flex: 1,
+        margin: 15,
+        // justifyContent: 'center',
+    },
+    MainContainer:
+    {
+        flex: 1,
+        backgroundColor: '#2c2c2c',
+        //justifyContent: 'center',
+    },
+    button1: {
+        borderRadius: 50,
+        width: 200
     }
 })
 
@@ -29,7 +46,7 @@ const Login = ({ navigation }) => {
     const { loading: userLoading } = useQuery(USER, {
         onCompleted: ({ user }) => {
             if (user) {
-                navigation.push('BottomRouter')
+                navigation.push('tabNavigator')
             }
         },
         onError: () => {
@@ -45,7 +62,7 @@ const Login = ({ navigation }) => {
                 type: 'info'
             })
             apollo.writeQuery({ query: USER, data: { user: authUser.user } })
-            navigation.replace('BottomRouter')
+            navigation.replace('tabNavigator')
         },
         onError: ({ message }) => {
             console.log(message)
@@ -93,55 +110,71 @@ const Login = ({ navigation }) => {
         })
     }
 
+    const textInputTheme = {
+        colors: {
+            primary: 'white',
+            text: '#f6f6f6',
+            placeholder: '#f6f6f6'
+        }
+    }
+
     if (userLoading || authLoading)
         return (
             <LoadingBar />
         )
     return (
-        <View style={styles.container}>
-            <Text>Логин</Text>
-            <TextInput
-                onChangeText={text => setLogin(text)}
-                value={login}
-                style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Введите логин'}
-            />
-            <Text style={{ marginTop: 24 }}>Пароль</Text>
-            <TextInput
-                onChangeText={text => setPassword(text)}
-                value={password}
-                style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Введите пароль'}
-                secureTextEntry={true}
-            />
-            <View
-                style={
-                    { marginTop: 24 }
-                }
+        <View style={styles.MainContainer}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Вход</Text>
+                <TextInput
+                    onChangeText={text => setLogin(text)}
+                    value={login}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
+                    placeholder={'Имя пользователя'}
 
-            >
-                <Button
-                    title={'Войти'}
-                    onPress={onAuth}
+                // onChangeText={(name) => setName(name)}
+                // placeholder={'Имя'}
+                // value={name}
+                // 
+                // 
+                // 
                 />
-            </View>
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                    }
-                }
+                <TextInput
+                    onChangeText={text => setPassword(text)}
+                    value={password}
+                    
+                    placeholder={'Пароль'}
+                    secureTextEntry={true}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
 
-            >
-                <Button
-                    title={'Регистрация'}
-                    style={{ paddingTop: 24 }}
-                    onPress={
+                />
+                <View
+                    style={
+                        {
+                            marginTop: 70,
+                            alignItems: 'center',
+                        }
+                    }
+                >
+                    <Button
+                        title={'Войти'}
+                        onPress={onAuth}
+                        buttonStyle={styles.button1}
+                    />
+                </View>
+                <TouchableOpacity onPress={
                         () => {
                             navigation.push('registration')
                         }
-                    }
-                />
+                    }>
+                    
+                    <Text style={{color:'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline'}}>Создать свой аккаунт</Text>
+
+                </TouchableOpacity>
             </View>
         </View>
     )

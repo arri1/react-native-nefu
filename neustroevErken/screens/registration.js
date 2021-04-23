@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
-import { AsyncStorage } from "@react-native-async-storage/async-storage"
+import { AsyncStorage, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Button } from 'react-native-elements';
+import { TextInput } from 'react-native-paper'
+//import { AsyncStorage } from "@react-native-async-storage/async-storage"
 import { showMessage } from "react-native-flash-message"
 import { useApolloClient, useMutation } from "@apollo/client"
 import { REG } from "../gqls/user/mutations"
@@ -8,14 +10,29 @@ import { USER } from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 
 const styles = StyleSheet.create({
+    title: {
+        textAlign: 'center',
+        fontSize: 32,
+        color: '#f6f6f6',
+        marginTop: 70,
+        marginVertical: 70,
+
+    },
     container: {
+        //alignItems: 'center',
         flex: 1,
         margin: 15,
+        // justifyContent: 'center',
     },
-    input: {
-        borderWidth: 0.5,
-        borderRadius: 10,
-        alignSelf: 'stretch',
+    MainContainer:
+    {
+        flex: 1,
+        backgroundColor: '#2c2c2c',
+        //justifyContent: 'center',
+    },
+    button1: {
+        borderRadius: 50,
+        width: 200
     }
 })
 
@@ -89,68 +106,74 @@ const Registration = ({ navigation }) => {
         })
     }
 
+    const textInputTheme = {
+        colors: {
+            primary: 'white',
+            text: '#f6f6f6',
+            placeholder: '#f6f6f6'
+        }
+    }
+
     if (loading)
         return (
             <LoadingBar />
         )
 
     return (
-        <ScrollView
-            style={styles.container}
-        >
-            <Text>Логин</Text>
-            <TextInput
-                onChangeText={text => setLogin(text)}
-                value={login}
-                style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Введите логин'}
-            />
-            <Text style={{ marginTop: 24 }}>Пароль</Text>
-            <TextInput
-                onChangeText={text => setPassword(text)}
-                value={password}
-                secureTextEntry={true}
-                style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Введите пароль'}
-            />
-            <TextInput
-                onChangeText={text => setConfirmPassword(text)}
-                value={confirmPassword}
-                secureTextEntry={true}
-                style={[styles.input, { marginTop: 8 }]}
-                placeholder={'Повторите пароль'}
-            />
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Создать'}
-                    onPress={createUser}
+        <View style={styles.MainContainer}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Регистрация</Text>
+                <TextInput
+                    onChangeText={text => setLogin(text)}
+                    value={login}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
+                    placeholder={'Введите логин'}
                 />
-            </View>
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
+                <TextInput
+                    onChangeText={text => setPassword(text)}
+                    value={password}
+                    secureTextEntry={true}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
+                    placeholder={'Введите пароль'}
+                />
+                <TextInput
+                    onChangeText={text => setConfirmPassword(text)}
+                    value={confirmPassword}
+                    secureTextEntry={true}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
+                    placeholder={'Повторите пароль'}
+                />
+                <View
+                    style={
+                        {
+                            marginTop: 70,
+                            alignItems: 'center'
+                        }
                     }
-                }
-            >
-                <Button
-                    title={'Назад'}
-                    onPress={
+                >
+                    <Button
+                        title={'Создать'}
+                        onPress={createUser}
+                        buttonStyle={styles.button1}
+                    />
+                </View>
+                <TouchableOpacity onPress={
                         () => {
                             navigation.goBack()
                         }
-                    }
-                />
+                    }>
+                    
+                    <Text style={{color:'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline'}}>Уже есть аккаунт</Text>
+
+                </TouchableOpacity>
             </View>
-        </ScrollView>
+        </View>
     )
 }
 export default Registration
