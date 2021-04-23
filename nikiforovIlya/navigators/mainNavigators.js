@@ -6,23 +6,19 @@ import Registration from "../screens/registration"
 
 const Stack = createStackNavigator()
 
-const MainRouter = () => {
+const mainNavigator = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name={'Login'}
                 options={
-                    {
-                        title: 'Вход'
-                    }
+                    {headerShown: false}
                 }
                 component={Login}/>
             <Stack.Screen
                 name={'Registration'}
                 options={
-                    {
-                        title: 'Регистрация'
-                    }
+                    {headerShown: false}
                 }
                 component={Registration}/>
             <Stack.Screen
@@ -36,4 +32,4 @@ const MainRouter = () => {
     )
 }
 
-export default MainRouter
+export default mainNavigator

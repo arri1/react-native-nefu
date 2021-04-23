@@ -8,13 +8,15 @@ import LoadingBar from "../components/loadingBar"
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        margin: 15,
+        backgroundColor: '#fff',
+       flex: 1
+        
     },
     input: {
         borderWidth: 0.5,
         borderRadius: 20,
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
+        margin: 15
     },
     button: {
         minWidth: 180,
