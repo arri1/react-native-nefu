@@ -2,16 +2,14 @@ import React from 'react'
 import {Text, View,StyleSheet} from 'react-native'
 
 const styles= StyleSheet.create({
-    listTile: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-        backgroundColor: "white",
-        padding: 10,
-        borderBottomWidth: 0.5,
-        borderBottomColor: "#666666"
+    container:{
+        flex: 1,
+        minHeight: 200,
+        borderRadius: 20,
+        margin: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:'#00FFFF'
     }
 })
 
