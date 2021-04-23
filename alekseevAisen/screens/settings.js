@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {AsyncStorage, Button, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Button, StyleSheet, Text, TextInput, View, ImageBackground, Image, SafeAreaView, TouchableOpacity} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useApolloClient, useMutation, useQuery} from "@apollo/client"
 import {USER} from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
@@ -20,8 +21,31 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: 'stretch',
         marginTop: 24
-    }
+    },
+    button_view: {
+        marginTop: 24,
+        alignItems: 'center'
+    },
+    image_round:{
+        marginTop: 20,
+        width: 160,
+        height: 160,
+        alignSelf: 'center',
+        borderRadius: 100,
+        overflow: 'hidden',
+    },
+    tch_opacity_logout: {
+        marginTop: 35,
+        height: 60,
+        alignItems: 'center',
+        backgroundColor: '#A4BFCA',
+        marginLeft: 80,
+        marginRight: 80,
+        borderRadius: 50
+    },
 })
+
+const image = {};
 
 const Settings = ({navigation}) => {
     const [password, setPassword] = useState('')

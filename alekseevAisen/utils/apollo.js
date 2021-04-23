@@ -1,8 +1,8 @@
-import {ApolloClient, ApolloLink, InMemoryCache} from '@apollo/client'
+import {ApolloClient, createHttpLink, ApolloLink, InMemoryCache} from '@apollo/client'
 import {onError} from '@apollo/client/link/error'
 import {setContext} from '@apollo/client/link/context'
 import {createUploadLink} from 'apollo-upload-client'
-import {AsyncStorage} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const graphURL ='https://nefu-server.herokuapp.com/'
 
@@ -26,9 +26,8 @@ const errorLink = onError(({graphQLErrors, networkError}) => {
     if (networkError) console.error(`[Network error]: ${networkError}`)
 })
 
-const uploadLink = createUploadLink({
-    uri: graphURL,
-    credentials: 'same-origin'
+const httpLink = createHttpLink({
+    uri: url
 })
 
 const link = ApolloLink.from([authLink, errorLink, uploadLink])
