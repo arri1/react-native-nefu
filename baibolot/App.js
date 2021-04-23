@@ -18,15 +18,15 @@ const App = (props) => {
     const onClick = () => setColor(randomHex())
     return (
         <View style={styles.mainContainer}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 onPress={onClick}
                 style={[
                     styles.container,
                     { backgroundColor: randomHex() }
                 ]}
-            >
-                <Text style={styles.instructions}>Замена цветов в один клик!</Text>
-            </TouchableOpacity>
+            > */}
+                <Text style={styles.instructions}>HELLOW WORLD!</Text>
+            {/* </TouchableOpacity> */}
         </View >
         
     );
