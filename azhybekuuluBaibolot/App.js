@@ -4,28 +4,17 @@ import {Dimensions, StyleSheet, Text, View, TouchableOpacity, Button
 
 const { height, width } = Dimensions.get('window')
 
-const randomHex = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
-
 const App = (props) => {
-    const [backgroundColor, setColor] = useState(randomHex())
-    const onClick = () => setColor(randomHex())
+    const [backgroundColor, setColor] = useState()
     return (
         <View style={styles.mainContainer}>
             <TouchableOpacity
-                onPress={onClick}
                 style={[
                     styles.container,
-                    { backgroundColor: randomHex() }
+                    { backgroundColor: "white" }
                 ]}
             >
-                <Text style={styles.instructions}>Замена цветов в один клик!</Text>
+                <Text style={styles.instructions}>HELLOW WORLD!</Text>
             </TouchableOpacity>
         </View >
         
@@ -38,7 +27,6 @@ const styles = StyleSheet.create({
         width,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: randomHex(),
     },
     instructions: {
         color: "black",
