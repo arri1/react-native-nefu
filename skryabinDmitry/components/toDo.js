@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 
 
-const toDo = (title, key) => {
+const toDo = (task) => {
+
+    console.log(task.task)
     return(
         <View style = { styles.container } >
             <Text>
-               Пост под номером: { key }
-            </Text>
-            <Text>
-                { title }
+                lol
+                { task.task }
             </Text>
             
         </View>
@@ -23,3 +23,5 @@ const styles = StyleSheet.create({
         height: 100
     }
 })
+
+export default toDo

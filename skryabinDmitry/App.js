@@ -1,36 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { View, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { View, SafeAreaView, StyleSheet, FlatList } from 'react-native'
 
 
 import axios from 'axios'
 
 
-import ToDo from './components/toDo'
+import ToDo from './components/ToDo'
 
 const App = () => {
-  const url = 'https://jsonplaceholder.typicode.com/posts'
+  const url = 'https://my-json-server.typicode.com/typicode/demo/posts'
   const [data, setData] = useState([])
   useEffect(() => {
-      axios.get(url).then(({response}) => { 
-        const posts = response.data
-        this.setState({ posts })
-      }).catch(error => console.log(error));
+      axios.get(url).then((response) => { 
+        setData(response.data)
+      })
   }, [])
-  console.log(data)
 
   return (
       <SafeAreaView style = { styles.container }>
-        <ScrollView>{
-          data.map(item => {
-              return (
-                  <ToDo
-                      title={item.title}
-                      key={item.id}
-                  />
-              )
-            })
-          }
-          </ScrollView>
+        <FlatList
+          data = { data }
+          renderItem = { ({ item })  => <ToDo task = { item.title } /> }
+          keyExtractor = { item => item.id.toString() } 
+      />
       </SafeAreaView>
   )
 }
@@ -46,3 +38,5 @@ const styles = StyleSheet.create({
 })
 
 export default App;
+
+
