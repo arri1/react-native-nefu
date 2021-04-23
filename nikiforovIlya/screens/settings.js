@@ -19,22 +19,23 @@ const styles = StyleSheet.create({
         height: 80,
         paddingTop: 38,
         justifyContent: "flex-start"
-        
+       
     },
     input: {
         minWidth: 180,
+        backgroundColor: '#F6F6F6',
         minHeight: 20,
         borderWidth: 0.5,
-        borderRadius: 20,
+        borderRadius: 5,
         alignSelf: 'stretch',
         justifyContent:'center',
         marginTop: 14,
         margin: 14
     },
     button: {
-        minWidth: 180,
+        minWidth: 249,
         backgroundColor: '#197BDD',
-        borderRadius: 50,
+        borderRadius: 5,
         minHeight:50,
         alignItems:'center',
         justifyContent:'center'
@@ -154,7 +155,6 @@ const Settings = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-        <Text style={styles.title}>Профиль</Text> 
             <Text 
                 style={styles.avatar}
             >
