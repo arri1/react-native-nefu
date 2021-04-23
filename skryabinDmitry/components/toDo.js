@@ -15,9 +15,13 @@ const toDo = (task) => {
 
 const styles = StyleSheet.create({
     container: {
+        marginBottom: 5,
+        height: 60,
+        backgroundColor: '#fff',
+        alignSelf: 'stretch',
         justifyContent: 'center',
-        width: '100%',
-        height: 100
+        paddingLeft: 10,
+        elevation: 1
     }
 })
 

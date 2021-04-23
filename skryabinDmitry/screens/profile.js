@@ -30,7 +30,7 @@ const Profile = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style = {{ alignItems: 'center' }}>
-                <Icon name="user-circle" size={ 100 } color = "#374e8c" style = {{ marginBottom: 10 }} />
+                <Icon name="user" size={ 100 } color = "#374e8c" style = {{ marginBottom: 10 }} />
                 <View style = { styles.text_container }>
                     <Text style = { styles.text }>
                         { user_login.login }
