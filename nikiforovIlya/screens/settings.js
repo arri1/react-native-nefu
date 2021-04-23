@@ -6,6 +6,7 @@ import LoadingBar from "../components/loadingBar"
 import {UPDATE_USER} from "../gqls/user/mutations"
 import {showMessage} from "react-native-flash-message"
 
+
 const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
         width: "36%",
         marginTop: 10,
         marginRight: 150,
-        marginVertical: 80,
         padding: 50
     },
     title: {

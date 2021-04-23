@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AsyncStorage, TouchableOpacity, Button, StyleSheet, Text, TextInput, View } from "react-native"
+import { AsyncStorage, TouchableOpacity, StyleSheet, Text, TextInput, View } from "react-native"
 import { useApolloClient, useMutation, useQuery } from "@apollo/client"
 import { showMessage } from "react-native-flash-message"
 import { USER } from "../gqls/user/queries"
@@ -9,14 +9,15 @@ import { AUTH } from "../gqls/user/mutations"
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: '#fff',
         alignItems: 'center',
-        flex: 1,
-        margin: 15
+        flex: 1
     },
     input: {
         borderWidth: 0.5,
         borderRadius: 20,
         alignSelf: 'stretch',
+        margin: 15
     },
     button: {
         minWidth: 180,
@@ -44,10 +45,11 @@ const styles = StyleSheet.create({
     
 })
 
+
 const Login = ({ navigation }) => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
-
+    const [isSecureEntry, setIsSecureEntry] = useState(true);
     const apollo = useApolloClient()
 
     const { loading: userLoading } = useQuery(USER, {
@@ -120,6 +122,7 @@ const Login = ({ navigation }) => {
         return (
             <LoadingBar />
         )
+    
     return (
         <View style={styles.container}>
             <Text
@@ -145,6 +148,7 @@ const Login = ({ navigation }) => {
                 style={[styles.input, { marginTop: 8 }]}
                 placeholder={'Введите пароль'}
                 secureTextEntry={true}
+            
             />
             <View
                 style={
