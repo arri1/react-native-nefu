@@ -7,6 +7,9 @@ import { UPDATE_USER } from '../gqls/auth/mutations'
 import { showMessage } from 'react-native-flash-message'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon2 from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //TODO: Add change name too
 
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image_round:{
-        marginTop: 20,
+        marginTop: 40,
         width: 160,
         height: 160,
         alignSelf: 'center',
@@ -39,19 +42,19 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     tch_opacity_logout: {
-        marginTop: 35,
-        height: 60,
+        marginTop: 30,
+        height: 50,
         alignItems: 'center',
-        backgroundColor: '#A4BFCA',
-        marginLeft: 80,
-        marginRight: 80,
-        borderRadius: 50
+        justifyContent:'center',
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: '#197BDD'
     },
 })
 
 const image = {};
 
-const Settings = ({ navigation }) => {
+const LabsView = ({ navigation }) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [group, setGroup] = useState('')
@@ -67,37 +70,44 @@ const Settings = ({ navigation }) => {
         }
     })
 
-    const logOut = async () => {
-        navigation.replace('Login')
-        await AsyncStorage.setItem('token', '')
-        //apollo.writeQuery({ query: USER, data: { user: null } })
-    }
 
     return (
         <SafeAreaView style={styles.container}>
+
+            <Text style={{
+                textAlign: 'center',
+                
+                fontSize: 24,
+                color: 'black',
+                fontWeight: 'bold'
+            }} >
+                Главная
+            </Text>
 
             <Image 
                 source={require("../images/milos.jpg")} 
                 style={styles.image_round}>
             </Image>
 
-            <Text style={[styles.title, {marginTop:20}]}>BJladika</Text>
+            <TouchableOpacity 
+            
+                style={styles.tch_opacity_logout}
+                title={'list'}
+                onPress={() => {navigation.push('List')}}>
+                <Text style={{ fontSize:18, color:'#197BDD', }}>Список задач</Text>
+        
+            </TouchableOpacity>
 
             <TouchableOpacity 
                 style={styles.tch_opacity_logout}
                 title={'Log In'}
                 onPress={() => {navigation.push('Edit Account')}}>
 
-                <Text style={{ fontSize:18, marginTop: 18, color:'white', }}>Edit Account</Text>
+                <Text style={{ fontSize:18, color:'#197BDD', }}>Профиль</Text>
             </TouchableOpacity>
-            <TouchableOpacity 
-                style={[styles.tch_opacity_logout,{backgroundColor:'#A5A6A7',marginTop:20}]}
-                title={'Log In'}
-                onPress={() => {logOut()}}>
-
-                <Text style={{ fontSize:18, marginTop: 18, color:'white', }}>Log Out</Text>
-            </TouchableOpacity>
+            
         </SafeAreaView>
     )
 }
-export default Settings
+
+export default LabsView

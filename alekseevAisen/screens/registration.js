@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
-import {Button, ScrollView, StyleSheet, Text, View, SafeAreaView, TouchableOpacity} from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React,{useState} from 'react'
+import {Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, Text} from 'react-native'
 import {showMessage} from "react-native-flash-message"
-import {useApolloClient, useMutation} from "@apollo/client"
-import {REG} from "../gqls/user/mutations"
-import {USER} from "../gqls/user/queries"
-import LoadingBar from "../components/loadingBar"
+import {useApolloClient, useMutation} from "@apollo/react-hooks"
+
+import {REGISTER_USER} from '../gqls/auth/mutations'
+import {USER} from "../gqls/auth/queries"
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import LoadingBar from "../components/loadingBar"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput, DefaultTheme} from 'react-native-paper'
 
 const styles = StyleSheet.create({
@@ -15,12 +16,13 @@ const styles = StyleSheet.create({
         margin: 25,
     },
     input: {
+        height: 50,
         alignSelf: 'stretch',
         backgroundColor: 'white',
     },
     tch_opacity_create_acc: {
         marginTop: 35,
-        height: 60,
+        height: 50,
         alignItems: 'center',
         backgroundColor: '#197BDD',
         marginLeft: 80,
@@ -37,7 +39,7 @@ const theme = {
       primary: '#197BDD',
       accent: '#f1c40f',
     },
-};
+  };
 
 const Registration = ({navigation}) => {
     const [login, setLogin] = useState('')
@@ -46,7 +48,7 @@ const Registration = ({navigation}) => {
 
     const apollo = useApolloClient()
 
-    const [reg, {loading}] = useMutation(REG, {
+    const [reg, {loading}] = useMutation(REGISTER_USER, {
         onCompleted: async ({registerUser}) => {
             await AsyncStorage.setItem('token', registerUser.token)
             showMessage({
@@ -65,7 +67,7 @@ const Registration = ({navigation}) => {
                 return null
             }
             showMessage({
-                message: 'Что-то пошло не так',
+                message: 'Что то пошло не так',
                 type: 'danger'
             })
         }
@@ -118,7 +120,25 @@ const Registration = ({navigation}) => {
         <ScrollView
             style={styles.container}
         >
-            <Text style={{marginTop:25, alignSelf:'center', fontSize:16}}>Заполните все поля для создания аккаунта</Text>
+            
+            <Text style={{
+                textAlign: 'center',
+                fontSize: 24,
+                color: 'black',
+                fontWeight: 'bold'
+            }} >
+                Регистрация
+            </Text>
+            <Text style={{
+                textAlign: 'center',
+                marginTop: 10,
+                fontSize: 12,
+                color: 'grey',
+                
+            }} >
+                Заполните все поля, чтобы создать аккаунт
+            </Text>
+        
             <TextInput
                 onChangeText={text => setLogin(text)}
                 value={login}
@@ -129,7 +149,7 @@ const Registration = ({navigation}) => {
                 left={
                     <TextInput.Icon
                     styles={{marginLeft:50}}
-                    name={()=><Icon name='user' size={24}/>}
+                    name={()=><Icon name='address-card' size={14}/>}
                     />
                 }
             />
@@ -137,14 +157,14 @@ const Registration = ({navigation}) => {
                 onChangeText={text => setPassword(text)}
                 value={password}
                 secureTextEntry={true}
-                style={[styles.input, {marginTop: 20}]}
+                style={[styles.input, {marginTop: 15}]}
                 placeholder={'Введите пароль'}
                 mode='outlined'
                 theme={theme}
                 left={
                     <TextInput.Icon
                     styles={{marginLeft:50}}
-                    name={()=><Icon name='lock' size={24}/>}
+                    name={()=><Icon name='lock' size={14}/>}
                     />
                 }
             />
@@ -152,14 +172,14 @@ const Registration = ({navigation}) => {
                 onChangeText={text => setConfirmPassword(text)}
                 value={confirmPassword}
                 secureTextEntry={true}
-                style={[styles.input, {marginTop: 20}]}
+                style={[styles.input, {marginTop: 15}]}
                 placeholder={'Повторите пароль'}
                 mode='outlined'
                 theme={theme}
                 left={
                     <TextInput.Icon
                     styles={{marginLeft:50}}
-                    name={()=><Icon name='lock' size={24}/>}
+                    name={()=><Icon name='lock' size={14}/>}
                     />
                 }
             />
@@ -167,10 +187,11 @@ const Registration = ({navigation}) => {
                 style={styles.tch_opacity_create_acc}
                 title={'Log In'}
                 onPress={() => {createUser()}}>
-                <Text style={{ fontSize:18, marginTop: 18, color:'white', }}>Create Account</Text>
+                <Text style={{ fontSize:18, marginTop: 12, color:'white', }}>Создать</Text>
             </TouchableOpacity>
 
         </ScrollView>
     )
 }
+
 export default Registration
