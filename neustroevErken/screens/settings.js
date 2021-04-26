@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 32,
         color: '#f6f6f6',
-        marginTop: 20,
         marginVertical: 50
     },
     container: {
@@ -29,10 +28,14 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: 200
     },
-    button2: {
-        borderRadius: 50,
-        width: 200,
+    buttonViewStyle: {
+        marginTop: 24,
+        alignItems: 'center'
     },
+    textInputStyle: {
+        backgroundColor: 'transparent',
+        fontSize: 14
+    }
 })
 
 const Settings = ({ navigation }) => {
@@ -144,7 +147,7 @@ const Settings = ({ navigation }) => {
                     value={name}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={styles.textInputStyle}
                 />
                 <TextInput
                     onChangeText={(group) => setGroup(group)}
@@ -152,14 +155,14 @@ const Settings = ({ navigation }) => {
                     value={group}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={styles.textInputStyle}
                 />
                 <TextInput
                     onChangeText={(text) => setPassword(text)}
                     value={password}
                     placeholder={'Новый пароль'}
                     underlineColor={'#f6f6f6'}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={styles.textInputStyle}
                     theme={textInputTheme}
                     secureTextEntry={true}
                 />
@@ -169,15 +172,11 @@ const Settings = ({ navigation }) => {
                     secureTextEntry={true}
                     placeholder={'Повторите пароль'}
                     underlineColor={'#f6f6f6'}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={styles.textInputStyle}
                     theme={textInputTheme}
                 />
                 <View
-                    style={
-                        {
-                            marginTop: 24,
-                            alignItems: 'center',
-                        }
+                    style={styles.buttonViewStyle
                     }
                 >
                     <Button
@@ -189,15 +188,11 @@ const Settings = ({ navigation }) => {
                     />
                 </View>
                 <View
-                    style={
-                        {
-                            marginTop: 24,
-                            alignItems: 'center'
-                        }
+                    style={styles.buttonViewStyle
                     }
                 >
                     <Button
-                        buttonStyle={styles.button2}
+                        buttonStyle={styles.button1}
                         title={'Выйти из аккаунта'}
                         onPress={logOut}
                         type="outline"
