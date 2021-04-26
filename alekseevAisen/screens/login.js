@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { View, SafeAreaView, TouchableOpacity, Text, StyleSheet, Button, Image } from 'react-native'
-import { useApolloClient, useMutation, useQuery } from "@apollo/react-hooks"
-import { showMessage } from "react-native-flash-message"
-import { USER } from "../gqls/auth/queries"
+import React, {useState} from 'react'
+import {Button, StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image} from "react-native"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useApolloClient, useMutation, useQuery} from "@apollo/client"
+import {showMessage} from "react-native-flash-message"
+import {USER} from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 import { AUTH_USER } from "../gqls/auth/mutations"
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -64,8 +65,9 @@ const Login = ({ navigation }) => {
         },
         fetchPolicy: 'network-only'
     })
-    const [auth, { loading: authLoading }] = useMutation(AUTH_USER, {
-        onCompleted: async ({ authUser }) => {
+        const [auth, {loading: authLoading}] = useMutation(AUTH, {
+        onCompleted: async ({authUser}) => {
+            await AsyncStorage.setItem('token', authUser.token)
             showMessage({
                 message: 'Регистрация прошла успешно',
                 type: 'info'
@@ -203,12 +205,9 @@ const Login = ({ navigation }) => {
             >
                 <Text style={{ textAlign: 'center', fontSize:12, color:'dodgerblue', marginTop:10 }}>Нет аккаунта? Зарегистрируйтесь</Text>
             </TouchableOpacity>
-            
-
-            
-
+        
+        
         </SafeAreaView>
     )
 }
-
 export default Login

@@ -1,11 +1,9 @@
-import React,{useState} from 'react'
-import {Button, ScrollView, StyleSheet, View, SafeAreaView, TouchableOpacity, Text} from 'react-native'
+import React, {useState} from 'react'
+import {Button, ScrollView, StyleSheet, Text, View, SafeAreaView, TouchableOpacity} from 'react-native'
 import {showMessage} from "react-native-flash-message"
-import {useApolloClient, useMutation} from "@apollo/react-hooks"
-
-import {REGISTER_USER} from '../gqls/auth/mutations'
-import {USER} from "../gqls/auth/queries"
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useApolloClient, useMutation} from "@apollo/client"
+import {REG} from "../gqls/user/mutations"
+import {USER} from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput, DefaultTheme} from 'react-native-paper'
@@ -48,7 +46,7 @@ const Registration = ({navigation}) => {
 
     const apollo = useApolloClient()
 
-    const [reg, {loading}] = useMutation(REGISTER_USER, {
+    const [reg, {loading}] = useMutation(REG, {
         onCompleted: async ({registerUser}) => {
             await AsyncStorage.setItem('token', registerUser.token)
             showMessage({
@@ -67,7 +65,7 @@ const Registration = ({navigation}) => {
                 return null
             }
             showMessage({
-                message: 'Что то пошло не так',
+                message: 'Что-то пошло не так',
                 type: 'danger'
             })
         }

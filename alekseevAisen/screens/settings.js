@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import { ImageBackground,Image, Button, SafeAreaView, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
-import { useMutation, useQuery } from '@apollo/react-hooks'
-import { USER } from '../gqls/auth/queries'
-import LoadingBar from '../components/loadingBar'
-import { UPDATE_USER } from '../gqls/auth/mutations'
-import { showMessage } from 'react-native-flash-message'
+import React, {useState} from 'react'
+import {Button, StyleSheet, Text, TextInput, View, ImageBackground, Image, SafeAreaView, TouchableOpacity} from 'react-native'
+import {useApolloClient, useMutation, useQuery} from "@apollo/client"
+import {USER} from "../gqls/user/queries"
+import LoadingBar from "../components/loadingBar"
+import {UPDATE_USER} from "../gqls/user/mutations"
+import {showMessage} from "react-native-flash-message"
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-//TODO: Add change name too
 
 const styles = StyleSheet.create({
     title: {
@@ -51,14 +50,16 @@ const styles = StyleSheet.create({
 
 const image = {};
 
-const Settings = ({ navigation }) => {
+const Settings = ({navigation}) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [group, setGroup] = useState('')
     const [name, setName] = useState('')
 
-    const { loading: userLoading } = useQuery(USER, {
-        onCompleted: ({ user }) => {
+    const apollo = useApolloClient()
+
+    const {loading: userLoading} = useQuery(USER, {
+        onCompleted: ({user}) => {
             setGroup(user.group)
             setName(user.name)
         },
@@ -67,10 +68,26 @@ const Settings = ({ navigation }) => {
         }
     })
 
+    const [save, {loading: saveLoading}] = useMutation(UPDATE_USER, {
+        onCompleted: ({user}) => {
+            apollo.writeQuery({query: USER, data: {user}})
+            showMessage({
+                message: 'Сохранено',
+                type: 'info'
+            })
+        },
+        onError: () => {
+            showMessage({
+                message: 'Что-то пошло не так',
+                type: 'danger'
+            })
+        }
+    })
+
     const logOut = async () => {
-        navigation.replace('Login')
+        apollo.writeQuery({query: USER, data: {user: null}})
         await AsyncStorage.setItem('token', '')
-        //apollo.writeQuery({ query: USER, data: { user: null } })
+        navigation.replace('Login')
     }
 
     return (
