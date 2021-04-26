@@ -28,7 +28,19 @@ const styles = StyleSheet.create({
     button1: {
         borderRadius: 50,
         width: 200
+    },
+    textInputStyle: {
+        backgroundColor: 'transparent',
+         fontSize: 14
+    },
+    buttonText: {
+        color: 'white', 
+        textAlign: 'center', 
+        marginTop: 20, 
+        textDecorationLine: 'underline', 
+        fontSize: 12
     }
+    
 })
 
 const Registration = ({ navigation }) => {
@@ -123,7 +135,7 @@ const Registration = ({ navigation }) => {
                     value={login}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={ styles.textInputStyle }
                     placeholder={'Введите логин'}
                 />
                 <TextInput
@@ -132,7 +144,7 @@ const Registration = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={ styles.textInputStyle }
                     placeholder={'Введите пароль'}
                 />
                 <TextInput
@@ -141,7 +153,7 @@ const Registration = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={ styles.textInputStyle }
                     placeholder={'Повторите пароль'}
                 />
                 <View
@@ -163,7 +175,7 @@ const Registration = ({ navigation }) => {
                         navigation.goBack()
                     }
                 }>
-                    <Text style={{ color: 'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline', fontSize: 12 }}>Уже есть аккаунт</Text>
+                    <Text style={styles.buttonText}>Уже есть аккаунт</Text>
                 </TouchableOpacity>
             </View>
         </View>

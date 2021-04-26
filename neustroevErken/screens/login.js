@@ -28,7 +28,15 @@ const styles = StyleSheet.create({
     button1: {
         borderRadius: 50,
         width: 200
+    },
+    buttonText: {
+        color: 'white', 
+        textAlign: 'center', 
+        marginTop: 20, 
+        textDecorationLine: 'underline', 
+        fontSize: 12
     }
+
 })
 
 const Login = ({ navigation }) => {
@@ -157,7 +165,7 @@ const Login = ({ navigation }) => {
                         navigation.push('registration')
                     }
                 }>
-                    <Text style={{ color: 'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline', fontSize: 12 }}>Создать свой аккаунт</Text>
+                    <Text style={ styles.buttonText }>Создать свой аккаунт</Text>
                 </TouchableOpacity>
             </View>
         </View>
