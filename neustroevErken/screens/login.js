@@ -35,6 +35,14 @@ const styles = StyleSheet.create({
         marginTop: 20, 
         textDecorationLine: 'underline', 
         fontSize: 12
+    },
+    textInputStyle: {
+        backgroundColor: 'transparent',
+         fontSize: 14
+    },
+    buttonViewStyle: {
+        marginTop: 70,
+        alignItems: 'center'
     }
 
 })
@@ -133,7 +141,7 @@ const Login = ({ navigation }) => {
                     value={login}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={ styles.textInputStyle }
                     placeholder={'Имя пользователя'}
                 />
                 <TextInput
@@ -144,14 +152,10 @@ const Login = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
+                    style={ styles.textInputStyle }
                 />
                 <View
-                    style={
-                        {
-                            marginTop: 70,
-                            alignItems: 'center',
-                        }
+                    style={styles.buttonViewStyle
                     }
                 >
                     <Button

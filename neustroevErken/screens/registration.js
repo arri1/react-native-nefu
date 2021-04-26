@@ -31,16 +31,21 @@ const styles = StyleSheet.create({
     },
     textInputStyle: {
         backgroundColor: 'transparent',
-         fontSize: 14
+        fontSize: 14
     },
     buttonText: {
-        color: 'white', 
-        textAlign: 'center', 
-        marginTop: 20, 
-        textDecorationLine: 'underline', 
+        color: 'white',
+        textAlign: 'center',
+        marginTop: 20,
+        textDecorationLine: 'underline',
         fontSize: 12
+    },
+    buttonViewStyle: {
+        marginTop: 70,
+        alignItems: 'center'
     }
-    
+
+
 })
 
 const Registration = ({ navigation }) => {
@@ -135,7 +140,7 @@ const Registration = ({ navigation }) => {
                     value={login}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={ styles.textInputStyle }
+                    style={styles.textInputStyle}
                     placeholder={'Введите логин'}
                 />
                 <TextInput
@@ -144,7 +149,7 @@ const Registration = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={ styles.textInputStyle }
+                    style={styles.textInputStyle}
                     placeholder={'Введите пароль'}
                 />
                 <TextInput
@@ -153,15 +158,11 @@ const Registration = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={ styles.textInputStyle }
+                    style={styles.textInputStyle}
                     placeholder={'Повторите пароль'}
                 />
                 <View
-                    style={
-                        {
-                            marginTop: 70,
-                            alignItems: 'center'
-                        }
+                    style={styles.buttonViewStyle
                     }
                 >
                     <Button
