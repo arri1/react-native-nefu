@@ -3,8 +3,14 @@ import { Text, View, StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 10,
-        backgroundColor: "silver",
+        alignSelf: 'center',
+        height: 80,
+        maxWidth: '95%',
+        top: 10,
+        margin: 5,
+        borderRadius: 10,
+        backgroundColor: "#3b444b",
+
     }
 })
 
@@ -14,12 +20,12 @@ const TodoListItem = ({ title, body }) => {
             style={styles.container}
         >
             <Text
-                style={{ fontSize: 18 }}
+                style={{ left: 10, fontSize: 14, color: '#F6F6F6', }}
             >
                 {title}
             </Text>
             <Text
-                style={{ marginTop: 8, fontSize: 12 }}
+                style={{ left: 10, fontSize: 12, color: '#898989', }}
             >
                 {body}
             </Text>

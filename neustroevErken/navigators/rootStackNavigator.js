@@ -22,16 +22,18 @@ const RootStackNavigator = () => {
                 name={'login'}
                 options={
                     {
-                        title: 'Вход'
-                    }
+                        title: ''
+                    },
+                    { headerShown: false }
                 }
                 component={Login} />
             <Stack.Screen
                 name={'registration'}
                 options={
                     {
-                        title: 'Регистрация'
-                    }
+                        title: ''
+                    },
+                    { headerShown: false }
                 }
                 component={Registration} />
             <Stack.Screen

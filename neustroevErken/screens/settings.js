@@ -1,30 +1,43 @@
-import React, {useState} from 'react'
-import { Button, StyleSheet, Text, TextInput, View} from 'react-native'
-import {AsyncStorage} from "@react-native-async-storage/async-storage"
-import {useApolloClient, useMutation, useQuery} from "@apollo/client"
-import {showMessage} from "react-native-flash-message"
+import React, { useState } from 'react'
+import { AsyncStorage, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Button } from 'react-native-elements';
+import { BottomNavigation, TextInput } from 'react-native-paper'
+//import {AsyncStorage} from "@react-native-async-storage/async-storage"
+import { fromPromise, useApolloClient, useMutation, useQuery } from "@apollo/client"
+import { showMessage } from "react-native-flash-message"
 import LoadingBar from "../components/loadingBar"
-import {USER} from "../gqls/user/queries"
-import {UPDATE_USER} from "../gqls/user/mutations"
+import { USER } from "../gqls/user/queries"
+import { UPDATE_USER } from "../gqls/user/mutations"
 
 const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
-        fontSize: 24
+        fontSize: 32,
+        color: '#f6f6f6',
+        marginTop: 70,
+        marginVertical: 50
     },
     container: {
         flex: 1,
-        margin: 15
+        margin: 15,
+        //justifyContent: 'center',
     },
-    input: {
-        borderWidth: 0.5,
-        borderRadius: 10,
-        alignSelf: 'stretch',
-        marginTop: 24
-    }
+    MainContainer:
+    {
+        flex: 1,
+        backgroundColor: '#2c2c2c',
+    },
+    button1: {
+        borderRadius: 50,
+        width: 200
+    },
+    button2: {
+        borderRadius: 50,
+        width: 200,
+    },
 })
 
-const Settings = ({navigation}) => {
+const Settings = ({ navigation }) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [group, setGroup] = useState('')
@@ -32,8 +45,8 @@ const Settings = ({navigation}) => {
 
     const apollo = useApolloClient()
 
-    const {loading: userLoading} = useQuery(USER, {
-        onCompleted: ({user}) => {
+    const { loading: userLoading } = useQuery(USER, {
+        onCompleted: ({ user }) => {
             setGroup(user.group)
             setName(user.name)
         },
@@ -42,9 +55,9 @@ const Settings = ({navigation}) => {
         }
     })
 
-    const [save, {loading: saveLoading}] = useMutation(UPDATE_USER, {
-        onCompleted: ({user}) => {
-            apollo.writeQuery({query: USER, data: {user}})
+    const [save, { loading: saveLoading }] = useMutation(UPDATE_USER, {
+        onCompleted: ({ user }) => {
+            apollo.writeQuery({ query: USER, data: { user } })
             showMessage({
                 message: 'Сохранено',
                 type: 'info'
@@ -59,9 +72,9 @@ const Settings = ({navigation}) => {
     })
 
     const logOut = async () => {
-        apollo.writeQuery({query: USER, data: {user: null}})
+        apollo.writeQuery({ query: USER, data: { user: null } })
         await AsyncStorage.setItem('token', '')
-        navigation.replace('Login')
+        navigation.replace('login')
     }
 
     const validate = () => {
@@ -103,73 +116,102 @@ const Settings = ({navigation}) => {
         save({
             variables: {
                 data: {
-                    group: {set: group},
-                    name: {set: name},
-                    password: {set: password}
+                    group: { set: group },
+                    name: { set: name },
+                    password: { set: password }
                 }
             }
         })
     }
 
+    const textInputTheme = {
+        colors: {
+            primary: 'white',
+            text: '#f6f6f6',
+            placeholder: '#f6f6f6'
+        }
+    }
+
     if (userLoading || saveLoading)
         return (
-            <LoadingBar/>
+            <LoadingBar />
         )
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Настройки</Text>
-            <TextInput
-                onChangeText={(text) => setName(text)}
-                value={name}
-                placeholder={'Имя'}
-                style={styles.input}
-            />
-            <TextInput
-                onChangeText={(text) => setGroup(text)}
-                value={group}
-                placeholder={'Группа'}
-                style={styles.input}
-            />
-            <TextInput
-                onChangeText={(text) => setPassword(text)}
-                value={password}
-                placeholder={'Новый пароль'}
-                style={styles.input}
-                secureTextEntry={true}
-            />
-            <TextInput
-                onChangeText={(text) => setConfirmPassword(text)}
-                value={confirmPassword}
-                secureTextEntry={true}
-                placeholder={'Повтарите пароль'}
-                style={styles.input}
-            />
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Сохранить'}
-                    onPress={onSave}
+        <View style={styles.MainContainer}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Настройки</Text>
+                <TextInput
+                    onChangeText={(name) => setName(name)}
+                    placeholder={'Имя'}
+                    value={name}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
+
                 />
-            </View>
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Выйти'}
-                    onPress={logOut}
+                <TextInput
+                    onChangeText={(group) => setGroup(group)}
+                    placeholder={'Группа'}
+                    value={group}
+                    underlineColor={'#f6f6f6'}
+                    theme={textInputTheme}
+                    style={{ backgroundColor: 'transparent' }}
+
                 />
+                <TextInput
+                    onChangeText={(text) => setPassword(text)}
+                    value={password}
+                    placeholder={'Новый пароль'}
+                    underlineColor={'#f6f6f6'}
+                    style={{ backgroundColor: 'transparent' }}
+                    theme={textInputTheme}
+                    secureTextEntry={true}
+                />
+                <TextInput
+                    onChangeText={(text) => setConfirmPassword(text)}
+                    value={confirmPassword}
+                    secureTextEntry={true}
+                    placeholder={'Повторите пароль'}
+                    underlineColor={'#f6f6f6'}
+                    style={{ backgroundColor: 'transparent' }}
+                    theme={textInputTheme}
+                />
+                <View
+                    style={
+                        {
+                            marginTop: 24,
+                            alignItems: 'center',
+                        }
+                    }
+                >
+                    <Button
+                        buttonStyle={styles.button1}
+                        title={'Сохранить'}
+                        onPress={onSave}
+                        color='#2F80ED'
+                        type="solid"
+
+
+                    />
+                </View>
+                <View
+                    style={
+                        {
+                            marginTop: 24,
+                            alignItems: 'center'
+                        }
+                    }
+                >
+                    <Button
+                        buttonStyle={styles.button2}
+                        title={'Выйти из аккаунта'}
+                        onPress={logOut}
+                        type="outline"
+
+
+                    />
+                </View>
             </View>
         </View>
     )
