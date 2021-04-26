@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import { AsyncStorage, StyleSheet, Text, View, TouchableOpacity } from "react-native"
 import { Button } from 'react-native-elements';
 import { TextInput } from 'react-native-paper'
-//import { AsyncStorage } from "@react-native-async-storage/async-storage"
 import { useApolloClient, useMutation, useQuery } from "@apollo/client"
 import { showMessage } from "react-native-flash-message"
 import { USER } from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 import { AUTH } from "../gqls/user/mutations"
-//import TabNavigator from "../navigators/tabNavigator"
 
 const styles = StyleSheet.create({
     title: {
@@ -17,19 +15,15 @@ const styles = StyleSheet.create({
         color: '#f6f6f6',
         marginTop: 70,
         marginVertical: 70,
-
     },
     container: {
-        //alignItems: 'center',
         flex: 1,
         margin: 15,
-        // justifyContent: 'center',
     },
     MainContainer:
     {
         flex: 1,
         backgroundColor: '#2c2c2c',
-        //justifyContent: 'center',
     },
     button1: {
         borderRadius: 50,
@@ -131,26 +125,18 @@ const Login = ({ navigation }) => {
                     value={login}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
+                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
                     placeholder={'Имя пользователя'}
-
-                // onChangeText={(name) => setName(name)}
-                // placeholder={'Имя'}
-                // value={name}
-                // 
-                // 
-                // 
                 />
                 <TextInput
                     onChangeText={text => setPassword(text)}
                     value={password}
-                    
+
                     placeholder={'Пароль'}
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
-
+                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
                 />
                 <View
                     style={
@@ -167,13 +153,11 @@ const Login = ({ navigation }) => {
                     />
                 </View>
                 <TouchableOpacity onPress={
-                        () => {
-                            navigation.push('registration')
-                        }
-                    }>
-                    
-                    <Text style={{color:'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline'}}>Создать свой аккаунт</Text>
-
+                    () => {
+                        navigation.push('registration')
+                    }
+                }>
+                    <Text style={{ color: 'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline', fontSize: 12 }}>Создать свой аккаунт</Text>
                 </TouchableOpacity>
             </View>
         </View>

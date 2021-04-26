@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { AsyncStorage, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-elements';
-import { BottomNavigation, TextInput } from 'react-native-paper'
-//import {AsyncStorage} from "@react-native-async-storage/async-storage"
-import { fromPromise, useApolloClient, useMutation, useQuery } from "@apollo/client"
+import { TextInput } from 'react-native-paper'
+import { useApolloClient, useMutation, useQuery } from "@apollo/client"
 import { showMessage } from "react-native-flash-message"
 import LoadingBar from "../components/loadingBar"
 import { USER } from "../gqls/user/queries"
@@ -14,13 +13,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 32,
         color: '#f6f6f6',
-        marginTop: 70,
+        marginTop: 20,
         marginVertical: 50
     },
     container: {
         flex: 1,
         margin: 15,
-        //justifyContent: 'center',
     },
     MainContainer:
     {
@@ -51,7 +49,6 @@ const Settings = ({ navigation }) => {
             setName(user.name)
         },
         onError: () => {
-
         }
     })
 
@@ -147,8 +144,7 @@ const Settings = ({ navigation }) => {
                     value={name}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
-
+                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
                 />
                 <TextInput
                     onChangeText={(group) => setGroup(group)}
@@ -156,15 +152,14 @@ const Settings = ({ navigation }) => {
                     value={group}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
-
+                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
                 />
                 <TextInput
                     onChangeText={(text) => setPassword(text)}
                     value={password}
                     placeholder={'Новый пароль'}
                     underlineColor={'#f6f6f6'}
-                    style={{ backgroundColor: 'transparent' }}
+                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
                     theme={textInputTheme}
                     secureTextEntry={true}
                 />
@@ -174,7 +169,7 @@ const Settings = ({ navigation }) => {
                     secureTextEntry={true}
                     placeholder={'Повторите пароль'}
                     underlineColor={'#f6f6f6'}
-                    style={{ backgroundColor: 'transparent' }}
+                    style={{ backgroundColor: 'transparent', fontSize: 14 }}
                     theme={textInputTheme}
                 />
                 <View
@@ -191,8 +186,6 @@ const Settings = ({ navigation }) => {
                         onPress={onSave}
                         color='#2F80ED'
                         type="solid"
-
-
                     />
                 </View>
                 <View
@@ -208,8 +201,6 @@ const Settings = ({ navigation }) => {
                         title={'Выйти из аккаунта'}
                         onPress={logOut}
                         type="outline"
-
-
                     />
                 </View>
             </View>

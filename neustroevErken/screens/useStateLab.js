@@ -26,7 +26,10 @@ const useStateLab = () => {
     <SafeAreaView style={styles.MainContainer}>
       <View style={styles.container}>
         <Text style={{ color: '#f6f6f6', textAlign: 'center', top: 25, fontSize: 14 }}>
-          Построй флаг России (тапай по блокам) Выполнено {count} нажатий
+          Построй флаг России (тапай по блокам)
+      </Text>
+      <Text style={{ color: '#f6f6f6', textAlign: 'center', top: 25, fontSize: 14 }}>
+          Выполнено {count} нажатий
       </Text>
         <View
           style={styles.flexbox}>
@@ -76,8 +79,6 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
     height: 275,
-    maxWidth: '95%',
-    top: 10,
     margin: 5,
     borderRadius: 10,
     backgroundColor: "#3b444b",

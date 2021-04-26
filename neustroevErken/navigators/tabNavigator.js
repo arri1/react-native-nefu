@@ -26,7 +26,7 @@ const TodoListStackScreen = () => {
           headerTitle: (
             <Text
               style={{
-                fontFamily: 'Lora-Regular',
+                fontFamily: "Lora-Regular",
                 fontWeight: '400',
                 fontSize: 24,
                 color: '#F6F6F6'
@@ -122,7 +122,6 @@ const TabNavigator = () => {
         }}
       />
     </Tab.Navigator>
-
   )
 };
 export default TabNavigator;
