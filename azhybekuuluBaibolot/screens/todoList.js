@@ -4,7 +4,7 @@ import Header from '../components/header';
 import TodoItem from '../components/todoItem';
 import AddTodo from '../components/addTodo';
 
-export default function App() {
+const TodoList = ({ navigation }) => {
   const [todos, setTodos] = useState([
     { text: 'Сыграть в шашки', key: '1' },
     { text: 'Создать приложение', key: '2' },
@@ -65,3 +65,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+export default TodoList

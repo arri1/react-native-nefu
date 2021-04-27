@@ -5,15 +5,10 @@ import todoList from "../screens/todoList"
 
 const Stack = createStackNavigator()
 
-const mainNavigator = () => {
+const MainNavigator = () => {
     return (
         
         <Stack.Navigator>
-            <Stack.Screen
-                name={'TabNavigator'}
-                component={TabNavigator}
-                options={
-                    {headerShown: false}}/>
             <Stack.Screen
                 name={'todoList'}
                 options={
@@ -24,4 +19,4 @@ const mainNavigator = () => {
     )
 }
 
-export default mainNavigator
+export default MainNavigator
