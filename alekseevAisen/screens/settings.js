@@ -1,10 +1,13 @@
 import React, {useState} from 'react'
-import {AsyncStorage, Button, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Button, StyleSheet, Text, TextInput, View, ImageBackground, Image, SafeAreaView, TouchableOpacity} from 'react-native'
 import {useApolloClient, useMutation, useQuery} from "@apollo/client"
 import {USER} from "../gqls/user/queries"
 import LoadingBar from "../components/loadingBar"
 import {UPDATE_USER} from "../gqls/user/mutations"
 import {showMessage} from "react-native-flash-message"
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const styles = StyleSheet.create({
     title: {
@@ -20,8 +23,32 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: 'stretch',
         marginTop: 24
-    }
+    },
+    button_view: {
+        marginTop: 24,
+        alignItems: 'center'
+    },
+    image_round:{
+        marginTop: 20,
+        width: 160,
+        height: 160,
+        alignSelf: 'center',
+        //Below lines will help to set the border radius
+        borderRadius: 100,
+        overflow: 'hidden',
+    },
+    tch_opacity_logout: {
+        marginTop: 35,
+        height: 60,
+        alignItems: 'center',
+        backgroundColor: '#A4BFCA',
+        marginLeft: 80,
+        marginRight: 80,
+        borderRadius: 50
+    },
 })
+
+const image = {};
 
 const Settings = ({navigation}) => {
     const [password, setPassword] = useState('')
@@ -63,114 +90,31 @@ const Settings = ({navigation}) => {
         navigation.replace('Login')
     }
 
-    const validate = () => {
-        if (group === '') {
-            showMessage({
-                message: 'Введите группу',
-                type: 'danger'
-            })
-            return false
-        }
-        if (name === '') {
-            showMessage({
-                message: 'Введите имя',
-                type: 'danger'
-            })
-            return false
-        }
-        if (password === '') {
-            showMessage({
-                message: 'Введите пароль',
-                type: 'danger'
-            })
-            return false
-        }
-        if (password !== confirmPassword) {
-            showMessage({
-                message: 'Пароли не совпадают',
-                type: 'danger'
-            })
-            return false
-        }
-        return true
-    }
-
-    const onSave = () => {
-        if (!validate()) {
-            return null
-        }
-        save({
-            variables: {
-                data: {
-                    group: {set: group},
-                    name: {set: name},
-                    password: {set: password}
-                }
-            }
-        })
-    }
-
-    if (userLoading || saveLoading)
-        return (
-            <LoadingBar/>
-        )
-
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Настройки</Text>
-            <TextInput
-                onChangeText={(text) => setName(text)}
-                value={name}
-                placeholder={'Имя'}
-                style={styles.input}
-            />
-            <TextInput
-                onChangeText={(text) => setGroup(text)}
-                value={group}
-                placeholder={'Группа'}
-                style={styles.input}
-            />
-            <TextInput
-                onChangeText={(text) => setPassword(text)}
-                value={password}
-                placeholder={'Новый пароль'}
-                style={styles.input}
-                secureTextEntry={true}
-            />
-            <TextInput
-                onChangeText={(text) => setConfirmPassword(text)}
-                value={confirmPassword}
-                secureTextEntry={true}
-                placeholder={'Повторите пароль'}
-                style={styles.input}
-            />
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Сохранить'}
-                    onPress={onSave}
-                />
-            </View>
-            <View
-                style={
-                    {
-                        marginTop: 24,
-                        alignItems: 'center'
-                    }
-                }
-            >
-                <Button
-                    title={'Выйти'}
-                    onPress={logOut}
-                />
-            </View>
-        </View>
+        <SafeAreaView style={styles.container}>
+
+            <Image 
+                source={require("../images/milos.jpg")} 
+                style={styles.image_round}>
+            </Image>
+
+            <Text style={[styles.title, {marginTop:20}]}>BJladika</Text>
+
+            <TouchableOpacity 
+                style={styles.tch_opacity_logout}
+                title={'Log In'}
+                onPress={() => {navigation.push('Edit Account')}}>
+
+                <Text style={{ fontSize:18, marginTop: 18, color:'white', }}>Edit Account</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={[styles.tch_opacity_logout,{backgroundColor:'#A5A6A7',marginTop:20}]}
+                title={'Log In'}
+                onPress={() => {logOut()}}>
+
+                <Text style={{ fontSize:18, marginTop: 18, color:'white', }}>Log Out</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     )
 }
 export default Settings
