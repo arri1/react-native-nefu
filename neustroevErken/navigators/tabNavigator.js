@@ -6,7 +6,16 @@ import UseStateLab from '../screens/useStateLab';
 import HomeScreen from '../screens/homeScreen';
 import TodoList from '../screens/todoList';
 import Settings from '../screens/settings';
-import { Text } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
+
+const styles = StyleSheet.create({
+  textStyle: {
+    fontFamily: "Lora-Regular",
+    fontWeight: '400',
+    fontSize: 24,
+    color: '#F6F6F6'
+  }
+})
 
 const TodoListStack = createStackNavigator()
 const TodoListStackScreen = () => {
@@ -25,12 +34,7 @@ const TodoListStackScreen = () => {
           headerLeft: null,
           headerTitle: (
             <Text
-              style={{
-                fontFamily: 'Lora-Regular',
-                fontWeight: '400',
-                fontSize: 24,
-                color: '#F6F6F6'
-              }}
+              style={styles.textStyle}
             >
               Посты
             </Text>
@@ -57,12 +61,7 @@ const UseStateLabStackScreen = () => {
           },
           headerTitle: (
             <Text
-              style={{
-                fontFamily: 'Lora-Regular',
-                fontWeight: '400',
-                fontSize: 24,
-                color: '#f6f6f6'
-              }}
+              style={styles.textStyle}
             >
               Лаба 1
             </Text>
@@ -122,7 +121,6 @@ const TabNavigator = () => {
         }}
       />
     </Tab.Navigator>
-
   )
 };
 export default TabNavigator;

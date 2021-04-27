@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { AsyncStorage, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-elements';
 import { TextInput } from 'react-native-paper'
-//import { AsyncStorage } from "@react-native-async-storage/async-storage"
 import { showMessage } from "react-native-flash-message"
 import { useApolloClient, useMutation } from "@apollo/client"
 import { REG } from "../gqls/user/mutations"
@@ -16,24 +15,37 @@ const styles = StyleSheet.create({
         color: '#f6f6f6',
         marginTop: 70,
         marginVertical: 70,
-
     },
     container: {
-        //alignItems: 'center',
         flex: 1,
         margin: 15,
-        // justifyContent: 'center',
     },
     MainContainer:
     {
         flex: 1,
         backgroundColor: '#2c2c2c',
-        //justifyContent: 'center',
     },
     button1: {
         borderRadius: 50,
         width: 200
+    },
+    textInputStyle: {
+        backgroundColor: 'transparent',
+        fontSize: 14
+    },
+    buttonText: {
+        color: 'white',
+        textAlign: 'center',
+        marginTop: 20,
+        textDecorationLine: 'underline',
+        fontSize: 12
+    },
+    buttonViewStyle: {
+        marginTop: 70,
+        alignItems: 'center'
     }
+
+
 })
 
 const Registration = ({ navigation }) => {
@@ -128,7 +140,7 @@ const Registration = ({ navigation }) => {
                     value={login}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
+                    style={styles.textInputStyle}
                     placeholder={'Введите логин'}
                 />
                 <TextInput
@@ -137,7 +149,7 @@ const Registration = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
+                    style={styles.textInputStyle}
                     placeholder={'Введите пароль'}
                 />
                 <TextInput
@@ -146,15 +158,11 @@ const Registration = ({ navigation }) => {
                     secureTextEntry={true}
                     underlineColor={'#f6f6f6'}
                     theme={textInputTheme}
-                    style={{ backgroundColor: 'transparent' }}
+                    style={styles.textInputStyle}
                     placeholder={'Повторите пароль'}
                 />
                 <View
-                    style={
-                        {
-                            marginTop: 70,
-                            alignItems: 'center'
-                        }
+                    style={styles.buttonViewStyle
                     }
                 >
                     <Button
@@ -164,13 +172,11 @@ const Registration = ({ navigation }) => {
                     />
                 </View>
                 <TouchableOpacity onPress={
-                        () => {
-                            navigation.goBack()
-                        }
-                    }>
-                    
-                    <Text style={{color:'white', textAlign: 'center', marginTop: 20, textDecorationLine: 'underline'}}>Уже есть аккаунт</Text>
-
+                    () => {
+                        navigation.goBack()
+                    }
+                }>
+                    <Text style={styles.buttonText}>Уже есть аккаунт</Text>
                 </TouchableOpacity>
             </View>
         </View>
