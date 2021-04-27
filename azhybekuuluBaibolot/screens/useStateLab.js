@@ -1,63 +1,78 @@
-import React, {useState,useEffect} from 'react'
-import {SafeAreaView,StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: "center",
-        height: 80,
-        paddingTop: 38,
-        justifyContent: "flex-start"
-      },
-    title: {
-        textAlign: 'center',
-        color: '#000000',
-        fontSize: 20,
-        fontWeight: 'bold',
-    }
-});
+const useStateLab = () => {
+  const [color, setColor] = useState('grey')
+  const [color2, setColor2] = useState('grey')
+  const [color3, setColor3] = useState('grey')
+  const [color4, setColor4] = useState('grey')
+  const [count, setCount] = useState(0)
+  const colorss = ['red', 'white', 'blue', 'green', 'blue', 'black', 'yellow']
 
-const UseStateLab = () => {
-    const [color, setColor] = useState('red')
-    const [count, setCount] = useState(0)
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 
-    useEffect(() => {
-        setCount(count + 1)
-    }, [color])
-    return (
-        <View style={styles.container}>
-        <Text style={styles.title}>Главная</Text> 
-        <SafeAreaView
-            style={{marginTop: 250}}
-        >
-         
-            <TouchableOpacity
-                style={{
-                    minWidth: 241,
-                    backgroundColor: '#197BDD',
-                    borderRadius: 5,
-                    minHeight:50,
-                    alignItems:'center',
-                    justifyContent:'center'
-                }}
-                title={'Change color'}
-                onPress={() => {
-                    setColor(color === 'red' ? 'blue' : 'red')
-                }}>
-                <Text
-                    style={{color:'#FFFFFF'}}
-                >
-                    Нажмите
-                </Text>
-            </TouchableOpacity>
-            
-            <Text style={{color:'#197BDD' ,marginTop: 24}}>
-                {'счет ' + count}
-            </Text>
-        </SafeAreaView>
-        </View>
-    );
+  useEffect(() => {
+    setCount(count + 1)
+  }, [color, color2, color3, color4])
+
+  return (
+    <SafeAreaView>
+      <Text>
+        Поменял цвет {count} 
+      </Text>
+      <View
+        style={styles.flexbox}>
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color }]}
+          onPress={() => {
+            setColor(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>1</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color2 }]}
+          onPress={() => {
+            setColor2(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>2</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color3 }]}
+          onPress={() => {
+            setColor3(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>3</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.boxsize, { backgroundColor: color3 }]}
+          onPress={() => {
+            setColor4(colorss[getRandomInt(7)])
+          }}>
+          <Text style={styles.text}>4</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
 }
-
-export default UseStateLab
+const styles = StyleSheet.create({
+  flexbox: {
+    flexDirection: 'column',
+    alignSelf: 'center',
+  },
+  boxsize: {
+    width: 180,
+    height: 40,
+  },
+});
+export default useStateLab;

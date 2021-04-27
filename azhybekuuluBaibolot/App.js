@@ -1,32 +1,31 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {Dimensions, View} from "react-native"
-import {NavigationContainer} from '@react-navigation/native';
-import FlashMessage from "react-native-flash-message";
-import RootStackNavigator from "./navigators/rootStackNavigator"
-import TabNavigator from "./navigators/tabNavigators"
-import MainNavigator from "./navigators/mainNavigators"
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import UseStateLab from './screens/useStateLab';
+import HomeScreen from './screens/homeScreen';
+import TodoList from './screens/todoList'
 
-const {width, height} = Dimensions.get('screen')
+const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
     return (
-        <View style={
-            {
-                width,
-                height
-            }
-        }>
-            <NavigationContainer>
-                <RootStackNavigator/>
-            </NavigationContainer>
-            <NavigationContainer>
-                <TabNavigator/>
-            </NavigationContainer>
-            <NavigationContainer>
-                <MainNavigator/>
-            </NavigationContainer>
-        </View>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen 
+            name="useStateLab" 
+            component={UseStateLab}
+          />
+          <Tab.Screen 
+            name="homeScreen" 
+            component={HomeScreen} 
+          />
+          <Tab.Screen 
+            name="todoList" 
+            component={TodoList} 
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
     )
-}
-
-export default App;
+  };
+  export default App;
